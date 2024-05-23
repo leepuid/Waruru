@@ -7,59 +7,65 @@ public class Domino : MonoBehaviour
 {
     [SerializeField] GameObject dominoPrefab;
 
-    private Vector3 rotation;
-    private Rigidbody dominoRb;
+    private Vector3 _rotation;
+    private Rigidbody _dominoRb;
 
-    private float rotationDomino = 90f;
-    private int turnDirection = 1;
-    private float rotationYTime = 1.0f;
+    private float _rotationDomino = 90f;
+    private int _turnDirection = 1;
+    private float _rotationYTime = 1.0f;
 
-    private bool isClickY = false;
-    private bool isClickZ = false;
-    private bool isSpawn = false;
+    private bool _isClickY = false;
+    private bool _isClickZ = false;
+    private bool _isSpawn = false;
 
     private void Awake()
     {
-        CameraControl.Instance.SetTarget(transform);
+        CameraControl.ins.SetTarget(transform);
     }
 
     private void Start()
     {
-        rotation = transform.eulerAngles;
-        dominoRb = GetComponent<Rigidbody>();
-        dominoRb.isKinematic = true;
+        _rotation = transform.eulerAngles;
+        _dominoRb = GetComponent<Rigidbody>();
+        _dominoRb.isKinematic = true;
     }
 
     private void FixedUpdate()
     {
+        if (Main.Game._gameState != GameState.Play)
+            return;
+
         RotationYDomino();
         RotationZDomino();
     }
 
     private void Update()
     {
-        rotationYTime -= Time.deltaTime;
-        if(rotationYTime < 0)
+        if (Main.Game._gameState != GameState.Play)
+            return;
+
+        _rotationYTime -= Time.deltaTime;
+        if(_rotationYTime < 0)
         {
-            turnDirection *= -1;
-            rotationYTime = 2.0f;
+            _turnDirection *= -1;
+            _rotationYTime = 2.0f;
         }
 
-        if (Input.GetMouseButtonDown(0)) // TODO : ºôµå ½Ã ¸ð¹ÙÀÏ ÅÍÄ¡·Î ¹Ù²Ù±â.
+        if (Input.GetMouseButtonDown(0)) // TODO : ë¹Œë“œ ì‹œ ëª¨ë°”ì¼ í„°ì¹˜ë¡œ ë°”ê¾¸ê¸°.
         {
-            if (isClickY)
+            if (_isClickY)
             {
-                isClickZ = true;
+                _isClickZ = true;
             }
-            isClickY = true;
+            _isClickY = true;
 
-            if (isClickZ)
+            if (_isClickZ)
             {
                 Drop();
-                if (!isSpawn)
+                if (!_isSpawn)
                 {
                     SpawnDomino();
-                    isSpawn = true;
+                    _isSpawn = true;
                 }
             }
         }
@@ -67,29 +73,29 @@ public class Domino : MonoBehaviour
 
     private void RotationYDomino()
     {
-        if (!isClickY)
+        if (!_isClickY)
         {
-            rotation = rotation + new Vector3(0.0f, rotationDomino * turnDirection, 0.0f) * Time.fixedDeltaTime;
-            transform.rotation = Quaternion.Euler(rotation);
+            _rotation = _rotation + new Vector3(0.0f, _rotationDomino * _turnDirection, 0.0f) * Time.fixedDeltaTime;
+            transform.rotation = Quaternion.Euler(_rotation);
         }
     }
 
     private void RotationZDomino()
     {
-        if (!isClickY)
+        if (!_isClickY)
         {
             return;
         }
-        if (!isClickZ)
+        if (!_isClickZ)
         {
-            rotation = rotation + new Vector3(0.0f, 0.0f, rotationDomino) * Time.fixedDeltaTime;
-            transform.rotation = Quaternion.Euler(rotation);
+            _rotation = _rotation + new Vector3(0.0f, 0.0f, _rotationDomino) * Time.fixedDeltaTime;
+            transform.rotation = Quaternion.Euler(_rotation);
         }
     }
 
     private void Drop()
     {
-        dominoRb.isKinematic = false;
+        _dominoRb.isKinematic = false;
     }
 
     private void SpawnDomino()

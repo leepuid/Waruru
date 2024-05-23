@@ -28,7 +28,7 @@ public class ResourceManager
         }
 
         // 풀링이 활성화된 경우 게임 매니저 풀에서 객체를 반환합니다.
-        if (pooling) return GameManager.Pool.Pop(go);
+        if (pooling) return Main.Pool.Pop(go);
 
         // 새로운 객체를 인스턴스화하여 반환합니다.
         return UnityEngine.Object.Instantiate(go, parent, instantiateInWorld);
@@ -41,7 +41,7 @@ public class ResourceManager
         if (obj == null) return;
 
         // 풀에 객체를 푸시할 수 있는 경우, 해당 객체를 풀에 반환합니다.
-        if (GameManager.Pool.Push(obj)) return;
+        if (Main.Pool.Push(obj)) return;
 
         // 풀에 반환하지 못한 경우 객체를 삭제합니다.
         UnityEngine.Object.Destroy(obj);

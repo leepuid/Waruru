@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreTxt;
 
     private Stack<GameObject> stack = new Stack<GameObject>();
-    State.TimeState state = new State.TimeState();
+    //State.TimeState state = new State.TimeState();
 
     void Start()
     {
@@ -25,8 +25,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-        public void GameStart()
-        {
+    public void GameStart()
+    {
         //if (Input.touchCount > 0)
         //{
         //Touch touch = Input.GetTouch(0);
@@ -36,11 +36,11 @@ public class UIManager : MonoBehaviour
         //panel.SetActive(false);
         //}
         //}
-        if(panelCanvasGroup != null)
+        if (panelCanvasGroup != null)
         {
-            panelCanvasGroup.DOFade(0, 1.0f).OnComplete(() =>
-            {
+            panelCanvasGroup.DOFade(0, 1.0f).OnComplete(() => {
                 panelCanvasGroup.gameObject.SetActive(false);
+                Main.Game._gameState = GameState.Play;
             });
         }
     }
@@ -86,6 +86,6 @@ public class UIManager : MonoBehaviour
 
     public void ScoreUp()
     {
-        // µµ¹Ì³ë°¡ »ı¼ºµÇ¼­ ³õ¿©Áú ¶§¸¶´Ù Á¡¼ö »ó½Â
+        // ë„ë¯¸ë…¸ê°€ ìƒì„±ë˜ì„œ ë†“ì—¬ì§ˆ ë•Œë§ˆë‹¤ ì ìˆ˜ ìƒìŠ¹
     }
 }
