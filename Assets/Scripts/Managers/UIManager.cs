@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Animation : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     public CanvasGroup panelCanvasGroup;
     public GameObject store;
@@ -15,6 +15,7 @@ public class UI_Animation : MonoBehaviour
     public TMP_Text scoreTxt;
 
     private Stack<GameObject> stack = new Stack<GameObject>();
+    State.TimeState state = new State.TimeState();
 
     void Start()
     {
@@ -35,7 +36,6 @@ public class UI_Animation : MonoBehaviour
         //panel.SetActive(false);
         //}
         //}
-
         if(panelCanvasGroup != null)
         {
             panelCanvasGroup.DOFade(0, 1.0f).OnComplete(() =>
