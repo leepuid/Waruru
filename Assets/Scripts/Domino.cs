@@ -8,15 +8,18 @@ public class Domino : MonoBehaviour
     [SerializeField] GameObject dominoPrefab;
 
     private Vector3 _rotation;
+    private Vector3 _spawnPosition;
+    private Quaternion _spawnRotation;
     private Rigidbody _dominoRb;
 
     private float _rotationDomino = 90f;
     private int _turnDirection = 1;
-    private float _rotationYTime = 1.0f;
+    private float _rotationTime = 1.0f;
 
     private bool _isClickY = false;
     private bool _isClickZ = false;
     private bool _isSpawn = false;
+    private bool _isFallDown = false;
 
     private void Awake()
     {
@@ -44,13 +47,21 @@ public class Domino : MonoBehaviour
         if (Main.Game._gameState != GameState.Play)
             return;
 
-        _rotationYTime -= Time.deltaTime;
-        if(_rotationYTime < 0)
-        {
-            _turnDirection *= -1;
-            _rotationYTime = 2.0f;
-        }
+        RotationTime();
+        Touch();
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_isFallDown)
+        {
+            Debug.Log("꿍");
+            _isFallDown = true;
+        }
+    }
+
+    private void Touch()
+    {
         if (Input.GetMouseButtonDown(0)) // TODO : 빌드 시 모바일 터치로 바꾸기.
         {
             if (_isClickY)
@@ -58,16 +69,30 @@ public class Domino : MonoBehaviour
                 _isClickZ = true;
             }
             _isClickY = true;
+            _rotationTime = 1.0f;
 
             if (_isClickZ)
             {
                 Drop();
                 if (!_isSpawn)
                 {
-                    SpawnDomino();
+                    _spawnPosition = transform.position + transform.forward;
+                    _spawnRotation = Quaternion.identity;
+                    CameraControl.ins.SetTarget(null);
+                    StartCoroutine(CoSpawnWaiting());
                     _isSpawn = true;
                 }
             }
+        }
+    }
+
+    private void RotationTime()
+    {
+        _rotationTime -= Time.deltaTime;
+        if (_rotationTime < 0)
+        {
+            _turnDirection *= -1;
+            _rotationTime = 2.0f;
         }
     }
 
@@ -88,7 +113,7 @@ public class Domino : MonoBehaviour
         }
         if (!_isClickZ)
         {
-            _rotation = _rotation + new Vector3(0.0f, 0.0f, _rotationDomino) * Time.fixedDeltaTime;
+            _rotation = _rotation + new Vector3(0.0f, 0.0f, _rotationDomino * _turnDirection) * Time.fixedDeltaTime;
             transform.rotation = Quaternion.Euler(_rotation);
         }
     }
@@ -100,6 +125,15 @@ public class Domino : MonoBehaviour
 
     private void SpawnDomino()
     {
-        Instantiate(dominoPrefab, transform.position + transform.forward, Quaternion.identity);
+        Instantiate(dominoPrefab, _spawnPosition, _spawnRotation);
+    }
+
+    IEnumerator CoSpawnWaiting()
+    {
+        while (!_dominoRb.IsSleeping())
+        {
+            yield return null;
+        }
+        SpawnDomino();
     }
 }
