@@ -82,7 +82,7 @@ public class Domino : MonoBehaviour
                 if (!_isSpawn)
                 {
                     _spawnPosition = transform.position + transform.forward;
-                    _spawnRotation = Quaternion.identity;
+                    _spawnRotation = transform.rotation;
                     CameraControl.ins.SetTarget(null);
                     StartCoroutine(CoSpawnWaiting());
                     _isSpawn = true;
