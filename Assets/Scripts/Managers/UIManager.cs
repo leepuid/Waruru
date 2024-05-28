@@ -7,21 +7,32 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public CanvasGroup panelCanvasGroup;
-    public GameObject store;
-    public GameObject share;
-    public GameObject ad;
-    public GameObject setting;
-    public TMP_Text scoreTxt;
+    public CanvasGroup startUI;    // Main화면 UI
+    public CanvasGroup endUI;   // GameOver UI
+    public GameObject store;    // 상점 UI 버튼
+    public GameObject share;    // 공유 UI 버튼
+    public GameObject ad;   // 광고 제거 UI 버튼
+    public GameObject setting;  // 설정 UI 버튼
+    public TMP_Text scoreTxt;   // 재화 UI 텍스트
+    
+    private bool isStateCheck = false;
+    private bool isPopUpOpen = false;
 
-    private Stack<GameObject> stack = new Stack<GameObject>();
-    //State.TimeState state = new State.TimeState();
+    private Stack<GameObject> stack = new();
 
     void Start()
     {
         if (Input.GetMouseButton(0))
         {
             GameStart();
+        }
+    }
+
+    private void Update()
+    {
+        if(Main.Game._gameState == GameState.End && !isStateCheck)
+        {
+            GameOver();
         }
     }
 
@@ -36,22 +47,42 @@ public class UIManager : MonoBehaviour
         //panel.SetActive(false);
         //}
         //}
-        if (panelCanvasGroup != null)
+        if (startUI != null && !isPopUpOpen)
         {
-            panelCanvasGroup.DOFade(0, 1.0f).OnComplete(() => {
-                panelCanvasGroup.gameObject.SetActive(false);
+            startUI.DOFade(0, 1.0f).OnComplete(() =>
+            {
+                startUI.gameObject.SetActive(false);
                 Main.Game._gameState = GameState.Play;
             });
         }
     }
+
+    public void GameOver()
+    {
+        // 게임 오버 시, 종료 UI 호출
+        if (Main.Game._gameState == GameState.End)
+        {
+            if (endUI != null)
+            {
+                endUI.gameObject.SetActive(true);
+                isStateCheck = true;
+                endUI.DOFade(1, 1.0f).OnComplete(() =>
+                {
+                    
+                });
+            }
+        }
+    }
+
     private void OpenPopUp(GameObject go)
     {
-        if(stack.Count > 0 )
+        if (stack.Count > 0)
         {
             GameObject current = stack.Peek();
             ClosePopUp(current);
         }
         go.SetActive(true);
+         isPopUpOpen = true;
         stack.Push(go);
 
         Sequence sequence = DOTween.Sequence();
@@ -86,6 +117,6 @@ public class UIManager : MonoBehaviour
 
     public void ScoreUp()
     {
-        // 도미노가 생성되서 놓여질 때마다 점수 상승
+
     }
 }
