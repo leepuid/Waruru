@@ -60,6 +60,11 @@ public class Domino : MonoBehaviour
         }
     }
 
+    private void GetPoint()
+    {
+        Debug.Log("성공");
+    }
+
     private void Touch()
     {
         if (Input.GetMouseButtonDown(0)) // TODO : 빌드 시 모바일 터치로 바꾸기.
@@ -134,6 +139,7 @@ public class Domino : MonoBehaviour
         {
             yield return null;
         }
+        if (!_isFallDown) GetPoint();
         SpawnDomino();
     }
 }
