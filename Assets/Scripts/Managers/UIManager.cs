@@ -38,7 +38,8 @@ public class UIManager : MonoBehaviour
         //}
         if (startUI != null)
         {
-            startUI.DOFade(0, 1.0f).OnComplete(() => {
+            startUI.DOFade(0, 1.0f).OnComplete(() =>
+            {
                 startUI.gameObject.SetActive(false);
                 Main.Game._gameState = GameState.Play;
             });
@@ -47,13 +48,24 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log(endUI);
         // 게임 오버 시, 종료 UI 호출
-        endUI.gameObject.SetActive(true);
+        if (Main.Game._gameState == GameState.End)
+        {
+            if (endUI != null)
+            {
+                endUI.gameObject.SetActive(true);
+                endUI.DOFade(1, 1.0f).OnComplete(() =>
+                {
+                    return;
+                });
+            }
+        }
     }
 
     private void OpenPopUp(GameObject go)
     {
-        if(stack.Count > 0 )
+        if (stack.Count > 0)
         {
             GameObject current = stack.Peek();
             ClosePopUp(current);
@@ -93,6 +105,6 @@ public class UIManager : MonoBehaviour
 
     public void ScoreUp()
     {
-        // 도미노가 생성되서 놓여질 때마다 점수 상승
+
     }
 }
