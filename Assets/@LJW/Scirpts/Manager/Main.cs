@@ -15,7 +15,7 @@ public sealed class Main : Singleton<Main>
     private readonly PoolManager _poolManager = new();
     private readonly ResourceManager _resourceManager = new();
     //private readonly ScenesManager _scenesManager = new();
-    private readonly UIManager _uiManager = new();
+    //private readonly UIManager _uiManager = new();
     //private SoundManager _soundManager = new();
     #endregion
 
@@ -25,7 +25,7 @@ public sealed class Main : Singleton<Main>
     public static PoolManager Pool => ins._poolManager;
     public static ResourceManager Resource => ins._resourceManager;
     //public static ScenesManager Scenes => ins._scenesManager;
-    public static UIManager UI => ins._uiManager;
+    //public static UIManager UI => ins._uiManager;
     #endregion
 
 }

@@ -20,7 +20,6 @@ public class Domino : MonoBehaviour
     private bool _isClickZ = false;
     private bool _isSpawn = false;
     private bool _isFallDown = false;
-
     private void Awake()
     {
         CameraControl.ins.SetTarget(transform);
@@ -57,6 +56,7 @@ public class Domino : MonoBehaviour
         {
             Debug.Log("꿍");
             _isFallDown = true;
+            Main.Game._gameState = GameState.End;
         }
     }
 

@@ -14,14 +14,27 @@ public class UIManager : MonoBehaviour
     public GameObject ad;   // 광고 제거 UI 버튼
     public GameObject setting;  // 설정 UI 버튼
     public TMP_Text scoreTxt;   // 재화 UI 텍스트
+    
+    private bool isStateCheck = false;
 
-    private Stack<GameObject> stack = new Stack<GameObject>();
+    private Stack<GameObject> stack = new();
 
     void Start()
     {
-        if (Input.GetMouseButton(0))
+        if (stack.Count == 0)
         {
-            GameStart();
+            if (Input.GetMouseButton(0))    
+            {
+                GameStart();
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if(Main.Game._gameState == GameState.End && !isStateCheck)
+        {
+            GameOver();
         }
     }
 
@@ -48,16 +61,16 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log(endUI);
         // 게임 오버 시, 종료 UI 호출
         if (Main.Game._gameState == GameState.End)
         {
             if (endUI != null)
             {
                 endUI.gameObject.SetActive(true);
+                isStateCheck = true;
                 endUI.DOFade(1, 1.0f).OnComplete(() =>
                 {
-                    return;
+                    
                 });
             }
         }
