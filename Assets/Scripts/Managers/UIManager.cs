@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
     public CanvasGroup startUI;    // Main화면 UI
     public CanvasGroup endUI;   // GameOver UI
@@ -115,8 +115,8 @@ public class UIManager : MonoBehaviour
         OpenPopUp(setting);
     }
 
-    public void ScoreUp()
+    public void SetScoreText(int score)
     {
-
+        scoreTxt.text = score.ToString();
     }
 }

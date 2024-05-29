@@ -63,6 +63,7 @@ public class Domino : MonoBehaviour
     private void GetPoint()
     {
         Debug.Log("성공");
+        Main.Game.AddScore();
     }
 
     private void Touch()
@@ -138,6 +139,8 @@ public class Domino : MonoBehaviour
         while (!_dominoRb.IsSleeping())
         {
             yield return null;
+            if (Main.Game._gameState == GameState.End)
+                yield break;
         }
         if (!_isFallDown) GetPoint();
         SpawnDomino();
