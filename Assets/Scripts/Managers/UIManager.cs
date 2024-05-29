@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
@@ -118,5 +119,12 @@ public class UIManager : Singleton<UIManager>
     public void SetScoreText(int score)
     {
         scoreTxt.text = score.ToString();
+    }
+
+    public void Restart()
+    {
+        Main.Game._gameState = GameState.Ready;
+        isStateCheck = false;
+        SceneManager.LoadScene(0);
     }
 }
