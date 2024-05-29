@@ -16,17 +16,15 @@ public class UIManager : Singleton<UIManager>
     public TMP_Text scoreTxt;   // 재화 UI 텍스트
     
     private bool isStateCheck = false;
+    private bool isPopUpOpen = false;
 
     private Stack<GameObject> stack = new();
 
     void Start()
     {
-        if (stack.Count == 0)
+        if (Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(0))    
-            {
-                GameStart();
-            }
+            GameStart();
         }
     }
 
@@ -49,7 +47,7 @@ public class UIManager : Singleton<UIManager>
         //panel.SetActive(false);
         //}
         //}
-        if (startUI != null)
+        if (startUI != null && !isPopUpOpen)
         {
             startUI.DOFade(0, 1.0f).OnComplete(() =>
             {
@@ -84,6 +82,7 @@ public class UIManager : Singleton<UIManager>
             ClosePopUp(current);
         }
         go.SetActive(true);
+         isPopUpOpen = true;
         stack.Push(go);
 
         Sequence sequence = DOTween.Sequence();
