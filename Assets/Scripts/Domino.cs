@@ -56,6 +56,7 @@ public class Domino : MonoBehaviour
         {
             Debug.Log("꿍");
             _isFallDown = true;
+            CameraControl.ins.SetTarget(transform, true);
             Main.Game._gameState = GameState.End;
         }
     }
