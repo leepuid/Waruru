@@ -37,8 +37,8 @@ public class Domino : MonoBehaviour
         if (Main.Game._gameState != GameState.Play)
             return;
 
-        RotationYDomino();
-        RotationZDomino();
+         RotationYDomino();
+        //RotationZDomino();
     }
 
     private void Update()
