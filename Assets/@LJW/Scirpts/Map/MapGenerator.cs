@@ -26,7 +26,6 @@ public class MapGenerator : MonoBehaviour
         bool CreateZ = false;
         xDistance = Player.position.x - transform.position.x;
         zDistance = Player.position.z - transform.position.z;
-        Debug.Log($"x:{xDistance}, z:{zDistance}");
         if (Mathf.Abs(xDistance) > CubeScale/4)
         {
             Vector3 xDir = new Vector3(xDistance, 0, 0).normalized;
@@ -54,14 +53,10 @@ public class MapGenerator : MonoBehaviour
     private void CreateMap(Vector3 pos)
     {
         Vector3 DownPos = pos - Vector3.up * 5;
-        Debug.DrawRay(DownPos, Vector3.up * CubeScale);
+        // Debug.DrawRay(DownPos, Vector3.up * CubeScale);
         if (!Physics.Raycast(DownPos, Vector3.up, CubeScale))
         {
             Instantiate(Cube, pos, Quaternion.identity);
-        }
-        else
-        {
-            Debug.Log("큐브가 이미 존재합니다.");
         }
     }
 
