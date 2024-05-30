@@ -26,8 +26,8 @@ public class Domino : MonoBehaviour
         // _rotationSpeed = UnityEngine.Random.Range(1.0f, 2.51f);
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
-        CameraControl.ins.SetTarget(transform);
         _rotationTime /= _rotationSpeed;
+        CameraControl.ins.SetTarget(transform);
     }
 
     private void Start()
