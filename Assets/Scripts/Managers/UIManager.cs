@@ -23,6 +23,7 @@ public class UIManager : Singleton<UIManager>
 
     void Start()
     {
+        Opennig();
         if (Input.GetMouseButton(0))
         {
             GameStart();
@@ -35,6 +36,15 @@ public class UIManager : Singleton<UIManager>
         {
             GameOver();
         }
+    }
+
+    public void Opennig()
+    {
+        startUI.gameObject.SetActive(true);
+        startUI.DOFade(1, 1.0f).OnComplete(() =>
+        {
+            
+        });
     }
 
     public void GameStart()
