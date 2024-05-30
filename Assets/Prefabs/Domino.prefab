@@ -253,3 +253,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dominoPrefab: {fileID: 1951050869187663915}
+  _rotationSpeed: 1

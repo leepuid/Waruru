@@ -11,6 +11,7 @@ public class Domino : MonoBehaviour
     private Vector3 _spawnPosition;
     private Quaternion _spawnRotation;
     private Rigidbody _dominoRb;
+    private float _rotationSpeed;
 
     private float _rotationDomino = 90f;
     private int _turnDirection = 1;
@@ -22,6 +23,10 @@ public class Domino : MonoBehaviour
     private bool _isFallDown = false;
     private void Awake()
     {
+        // _rotationSpeed = UnityEngine.Random.Range(1.0f, 2.51f);
+        _rotationSpeed = Main.Game.GetSpeed();
+        Debug.Log(_rotationSpeed);
+        _rotationTime /= _rotationSpeed;
         CameraControl.ins.SetTarget(transform);
     }
 
@@ -54,7 +59,6 @@ public class Domino : MonoBehaviour
     {
         if (!_isFallDown)
         {
-            Debug.Log("꿍");
             _isFallDown = true;
             CameraControl.ins.SetTarget(transform, true);
             Main.Game._gameState = GameState.End;
@@ -63,7 +67,6 @@ public class Domino : MonoBehaviour
 
     private void GetPoint()
     {
-        Debug.Log("성공");
         Main.Game.AddScore();
     }
 
@@ -76,7 +79,7 @@ public class Domino : MonoBehaviour
                 _isClickZ = true;
             }
             _isClickY = true;
-            _rotationTime = 1.0f;
+            _rotationTime = 1.0f/_rotationSpeed;
 
             if (_isClickZ)
             {
@@ -99,7 +102,7 @@ public class Domino : MonoBehaviour
         if (_rotationTime < 0)
         {
             _turnDirection *= -1;
-            _rotationTime = 2.0f;
+            _rotationTime = 2.0f / _rotationSpeed;
         }
     }
 
@@ -107,7 +110,7 @@ public class Domino : MonoBehaviour
     {
         if (!_isClickY)
         {
-            _rotation = _rotation + new Vector3(0.0f, _rotationDomino * _turnDirection, 0.0f) * Time.fixedDeltaTime;
+            _rotation = _rotation + new Vector3(0.0f, _rotationDomino * _turnDirection, 0.0f) * Time.fixedDeltaTime * _rotationSpeed;
             transform.rotation = Quaternion.Euler(_rotation);
         }
     }
@@ -120,7 +123,7 @@ public class Domino : MonoBehaviour
         }
         if (!_isClickZ)
         {
-            _rotation = _rotation + new Vector3(0.0f, 0.0f, _rotationDomino * _turnDirection) * Time.fixedDeltaTime;
+            _rotation = _rotation + new Vector3(0.0f, 0.0f, _rotationDomino * _turnDirection) * Time.fixedDeltaTime * _rotationSpeed;
             transform.rotation = Quaternion.Euler(_rotation);
         }
     }
