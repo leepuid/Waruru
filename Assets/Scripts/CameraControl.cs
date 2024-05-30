@@ -18,7 +18,7 @@ public class CameraControl : Singleton<CameraControl>
         }
         if (isGameOver)
         {
-            _transposer.m_FollowOffset = new Vector3(0, 3 ,8);
+            _transposer.m_FollowOffset = new Vector3(0, 5 ,8);
         }
         _camera.Follow = target;
     }
