@@ -15,11 +15,15 @@ public class UIManager : Singleton<UIManager>
     public GameObject ad;   // 광고 제거 UI 버튼
     public GameObject setting;  // 설정 UI 버튼
     public TMP_Text scoreTxt;   // 재화 UI 텍스트
+    public TMP_Text bestScoreTxt; // 기록 중 가장 높은 점수
+    public TMP_Text cntScoreTxt;  // 이번 시도의 점수
+    
+    private Stack<GameObject> stack = new();
     
     private bool isStateCheck = false;
     private bool isPopUpOpen = false;
 
-    private Stack<GameObject> stack = new();
+    private int best = 0;
 
     void Start()
     {
@@ -41,10 +45,7 @@ public class UIManager : Singleton<UIManager>
     public void Opennig()
     {
         startUI.gameObject.SetActive(true);
-        startUI.DOFade(1, 1.0f).OnComplete(() =>
-        {
-            
-        });
+        startUI.DOFade(1, 1.0f);
     }
 
     public void GameStart()
@@ -77,10 +78,8 @@ public class UIManager : Singleton<UIManager>
             {
                 endUI.gameObject.SetActive(true);
                 isStateCheck = true;
-                endUI.DOFade(1, 1.0f).OnComplete(() =>
-                {
-                    
-                });
+                endUI.DOFade(1, 1.0f);
+                SaveScore();
             }
         }
     }
@@ -136,5 +135,16 @@ public class UIManager : Singleton<UIManager>
         Main.Game._gameState = GameState.Ready;
         isStateCheck = false;
         SceneManager.LoadScene(0);
+    }
+
+    private void SaveScore()
+    {
+        int cnt = int.Parse(scoreTxt.text);
+        cntScoreTxt.text = "Score : " + cnt;
+        if(cnt > best)
+        {
+            best = cnt;
+            bestScoreTxt.text = "Best : " + best;
+        }
     }
 }
