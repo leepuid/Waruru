@@ -23,11 +23,14 @@ public class UIManager : Singleton<UIManager>
     private bool isStateCheck = false;
     private bool isPopUpOpen = false;
 
-    private int best = 0;
+    private int best;
 
     void Start()
     {
         Opennig();
+        best = PlayerPrefs.GetInt("BestScore", 0);
+        bestScoreTxt.text = "Best : " + best.ToString();
+        Debug.Log(best);
         if (Input.GetMouseButton(0))
         {
             GameStart();
@@ -79,6 +82,7 @@ public class UIManager : Singleton<UIManager>
                 endUI.gameObject.SetActive(true);
                 isStateCheck = true;
                 endUI.DOFade(1, 1.0f);
+                Debug.Log(best);
                 SaveScore();
             }
         }
@@ -157,7 +161,10 @@ public class UIManager : Singleton<UIManager>
         if(cnt > best)
         {
             best = cnt;
-            bestScoreTxt.text = "Best : " + best;
+            PlayerPrefs.SetInt("BestScore", best);
+            Debug.Log(best);
+            PlayerPrefs.Save();
+            bestScoreTxt.text = "Best : " + best.ToString();
         }
     }
 }
