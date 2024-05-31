@@ -111,18 +111,31 @@ public class UIManager : Singleton<UIManager>
             sequence.Append(go.transform.DOScale(1.0f, 0.1f));
             sequence.Append(go.transform.DOScale(0.3f, 0.1f));
             sequence.OnComplete(() => go.SetActive(false));
+            isPopUpOpen = false;
             sequence.Play();
+        }
+    }
+
+    private void TogglePopUp(GameObject go)
+    {
+        if(isPopUpOpen && stack.Peek() == go)
+        {
+            ClosePopUp(go);
+        }
+        else
+        {
+            OpenPopUp(go);
         }
     }
 
     public void StorePopUp()
     {
-        OpenPopUp(store);
+        TogglePopUp(store);  
     }
 
     public void SettingPopUp()
     {
-        OpenPopUp(setting);
+        TogglePopUp(setting);
     }
 
     public void SetScoreText(int score)
