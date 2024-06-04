@@ -100,8 +100,8 @@ public class UIManager : Singleton<UIManager>
         stack.Push(go);
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(go.transform.DOScale(1.3f, 0.1f));
-        sequence.Append(go.transform.DOScale(1.0f, 0.1f));
+        sequence.Append(go.transform.DOScale(1.3f, 0.2f));
+        sequence.Append(go.transform.DOScale(1.0f, 0.2f));
         sequence.Play();
     }
 
