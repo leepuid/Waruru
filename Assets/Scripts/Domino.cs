@@ -88,6 +88,11 @@ public class Domino : MonoBehaviour
                 {
                     _spawnPosition = transform.position + transform.forward;
                     _spawnRotation = transform.rotation;
+                    if (transform.rotation.eulerAngles.z > 180)
+                    {
+                        transform.rotation = Quaternion.Euler(
+                            transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z * -1);
+                    }
                     CameraControl.ins.SetTarget(null);
                     StartCoroutine(CoSpawnWaiting());
                     _isSpawn = true;
