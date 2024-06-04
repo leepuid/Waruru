@@ -17,7 +17,7 @@ public class GameManager
 
     public float GetSpeed() 
     {
-        if(_currentSpeed < 2.5f) _currentSpeed += 0.05f;
+        if(_currentSpeed <= 2.5f) _currentSpeed += 0.05f;
         return _currentSpeed;
     }
 
