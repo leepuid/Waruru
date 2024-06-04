@@ -8,15 +8,23 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    public CanvasGroup startUI;    // Main화면 UI
-    public CanvasGroup endUI;   // GameOver UI
-    public GameObject store;    // 상점 UI 버튼
-    public GameObject share;    // 공유 UI 버튼
-    public GameObject ad;   // 광고 제거 UI 버튼
-    public GameObject setting;  // 설정 UI 버튼
-    public TMP_Text scoreTxt;   // 재화 UI 텍스트
-    public TMP_Text bestScoreTxt; // 기록 중 가장 높은 점수
-    public TMP_Text cntScoreTxt;  // 이번 시도의 점수
+    [Header ("Start UI")]
+    [SerializeField]  private CanvasGroup startUI;    // Main화면 UI
+    [SerializeField]  private CanvasGroup endUI;   // GameOver UI
+    [SerializeField] private GameObject store;    // 상점 UI 버튼
+    [SerializeField] private GameObject ad;   // 광고 제거 UI 버튼
+    [SerializeField] private GameObject setting;  // 설정 UI 버튼
+    [SerializeField] private GameObject buyCheck; // 구매 의사를 묻는 UI
+    [SerializeField] private GameObject[] items;
+
+    [Header ("InGame UI")]
+    [SerializeField] private TMP_Text scoreTxt;   // 실시간 점수 UI 텍스트
+
+    [Header ("End UI")]
+    [SerializeField] private GameObject share;    // 공유 UI 버튼
+    [SerializeField] private TMP_Text bestScoreTxt; // 기록 중 가장 높은 점수
+    [SerializeField] private TMP_Text cntScoreTxt;  // 이번 시도의 점수
+    [SerializeField] private TMP_Text moneyTxt; // 재화 텍스트
     
     private Stack<GameObject> stack = new();
     
@@ -24,6 +32,7 @@ public class UIManager : Singleton<UIManager>
     private bool isPopUpOpen = false;
 
     private int best;
+    private static int money;
 
     void Start()
     {
@@ -142,6 +151,15 @@ public class UIManager : Singleton<UIManager>
         TogglePopUp(setting);
     }
 
+    public void BuyPopUpOpen()
+    {
+        buyCheck.SetActive(true);
+    }
+    public void BuyPopUpClose()
+    {
+        buyCheck.SetActive(false);
+    }
+
     public void SetScoreText(int score)
     {
         scoreTxt.text = score.ToString();
@@ -158,6 +176,8 @@ public class UIManager : Singleton<UIManager>
     {
         int cnt = int.Parse(scoreTxt.text);
         cntScoreTxt.text = "Score : " + cnt;
+        money += cnt;
+        moneyTxt.text = money.ToString(); 
         if(cnt > best)
         {
             best = cnt;
