@@ -706,6 +706,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Domino
       objectReference: {fileID: 0}
+    - target: {fileID: 7212064669917150909, guid: 79cac1c02ea384247b50da944dc4074b,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9689a55c2061729478f13e2fb6f1542f,
+        type: 2}
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
       propertyPath: m_RootOrder
@@ -729,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
@@ -744,7 +750,7 @@ PrefabInstance:
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
@@ -759,7 +765,7 @@ PrefabInstance:
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
