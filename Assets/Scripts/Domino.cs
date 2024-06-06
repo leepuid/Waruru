@@ -146,10 +146,32 @@ public class Domino : MonoBehaviour
 
     private void ChangeColor()
     {
-        float r = UnityEngine.Random.Range(158, 255);
-        float g = UnityEngine.Random.Range(158, 255);
-        float b = UnityEngine.Random.Range(158, 255);
-        Color randomColor = new Color(r, g, b);
+        //Color currentColor = gameObject.GetComponent<MeshRenderer>().material.color;
+        //float r = currentColor.r;
+        //float g = currentColor.g;
+        //float b = currentColor.b;
+        //if (r == 255f && g == 155f && b < 155f)
+        //{
+        //    b += 10f;
+        //}
+        //if (r > 155f && g == 255f && b == 255f)
+        //{
+        //    r -= 10f;
+        //}
+        //if (r == 155f && g < 255f && b == 255f)
+        //{
+        //    g += 10f;
+        //}
+        //if (r == 155f && g == 155f && b < 155f)
+        //{
+        //    b += 10f;
+        //}
+        //if (r < 255f && g == 155f && b == 155f)
+        //{
+        //    r += 10f;
+        //}
+        //currentColor = new Color(r, g, b);
+        Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
         Material mat = gameObject.GetComponent<MeshRenderer>().material;
         mat.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
     }
