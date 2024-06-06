@@ -12,7 +12,6 @@ public class Domino : MonoBehaviour
     private Quaternion _spawnRotation;
     private Rigidbody _dominoRb;
     private float _rotationSpeed;
-    private Renderer _renderer;
 
     private float _rotationDomino = 90f;
     private int _turnDirection = 1;
@@ -28,6 +27,7 @@ public class Domino : MonoBehaviour
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
         _rotationTime /= _rotationSpeed;
+        ChangeColor();
         CameraControl.ins.SetTarget(transform);
     }
 
@@ -36,7 +36,6 @@ public class Domino : MonoBehaviour
         _rotation = transform.eulerAngles;
         _dominoRb = GetComponent<Rigidbody>();
         _dominoRb.isKinematic = true;
-        _renderer = GetComponent<Renderer>();
     }
 
     private void FixedUpdate()
@@ -143,13 +142,16 @@ public class Domino : MonoBehaviour
     private void SpawnDomino()
     {
         Instantiate(dominoPrefab, _spawnPosition, _spawnRotation);
-        ChangeColor(); // 여기가 아닌가벼
     }
 
     private void ChangeColor()
     {
-        Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
-        _renderer.material.color = randomColor;
+        float r = UnityEngine.Random.Range(158, 255);
+        float g = UnityEngine.Random.Range(158, 255);
+        float b = UnityEngine.Random.Range(158, 255);
+        Color randomColor = new Color(r, g, b);
+        Material mat = gameObject.GetComponent<MeshRenderer>().material;
+        mat.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
     }
 
     IEnumerator CoSpawnWaiting()
