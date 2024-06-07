@@ -39,7 +39,6 @@ public class UIManager : Singleton<UIManager>
         Opennig();
         best = PlayerPrefs.GetInt("BestScore", 0);
         bestScoreTxt.text = "Best : " + best.ToString();
-        Debug.Log(best);
         if (Input.GetMouseButton(0))
         {
             GameStart();
@@ -48,6 +47,13 @@ public class UIManager : Singleton<UIManager>
 
     private void Update()
     {
+        if(Main.Game._gameState == GameState.Over)
+        {
+            if(Input.GetMouseButton(0))
+            {
+                Main.Game._gameState = GameState.End;
+            }
+        }
         if(Main.Game._gameState == GameState.End && !isStateCheck)
         {
             GameOver();
@@ -91,7 +97,7 @@ public class UIManager : Singleton<UIManager>
                 endUI.gameObject.SetActive(true);
                 isStateCheck = true;
                 endUI.DOFade(1, 1.0f);
-                Debug.Log(best);
+                
                 SaveScore();
             }
         }
