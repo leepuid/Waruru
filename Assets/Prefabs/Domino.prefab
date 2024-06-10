@@ -140,7 +140,7 @@ Transform:
   m_Children:
   - {fileID: 558915433223512723}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6974340785216429583
 MeshFilter:
@@ -170,7 +170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac33ca16790faa4489d501fe1a9bf159, type: 2}
+  - {fileID: 2100000, guid: c165312caa631fd4f9800c3c6a17a50f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,7 +199,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951050869187663915}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9689a55c2061729478f13e2fb6f1542f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

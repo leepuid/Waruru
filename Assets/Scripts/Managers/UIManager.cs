@@ -34,7 +34,7 @@ public class UIManager : Singleton<UIManager>
     private int best;
     private static int money;
 
-    void Start()
+    private void Start()
     {
         Opennig();
         best = PlayerPrefs.GetInt("BestScore", 0);
