@@ -27,7 +27,7 @@ public class Domino : MonoBehaviour
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
         _rotationTime /= _rotationSpeed;
-        ChangeColor();
+        //ChangeColor();
         CameraControl.ins.SetTarget(transform);
     }
 
@@ -160,36 +160,36 @@ public class Domino : MonoBehaviour
 
     private void ChangeColor()
     {
-        //Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
         Material mat = gameObject.GetComponent<MeshRenderer>().material;
-        //mat.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
-        Color currentColor = mat.GetColor("Color_64d861fce71044349695d1bac7f2ea98");
-        float r = currentColor.r;
-        float g = currentColor.g;
-        float b = currentColor.b;
-        if (r == 255f && g == 155f && b < 155f)
-        {
-            b += 10f;
-            Debug.Log("변신");
-        }
-        if (r > 155f && g == 255f && b == 255f)
-        {
-            r -= 10f;
-        }
-        if (r == 155f && g < 255f && b == 255f)
-        {
-            g += 10f;
-        }
-        if (r == 155f && g == 155f && b < 155f)
-        {
-            b += 10f;
-        }
-        if (r < 255f && g == 155f && b == 155f)
-        {
-            r += 10f;
-        }
-        currentColor = new Color(r, g, b);
-        mat.SetColor("Color_64d861fce71044349695d1bac7f2ea98", currentColor);
+        mat.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
+        //Color currentColor = mat.GetColor("Color_64d861fce71044349695d1bac7f2ea98");
+        //float r = currentColor.r;
+        //float g = currentColor.g;
+        //float b = currentColor.b;
+        //if (r == 255f && g == 155f && b < 155f)
+        //{
+        //    b += 10f;
+        //    Debug.Log("변신");
+        //}
+        //if (r > 155f && g == 255f && b == 255f)
+        //{
+        //    r -= 10f;
+        //}
+        //if (r == 155f && g < 255f && b == 255f)
+        //{
+        //    g += 10f;
+        //}
+        //if (r == 155f && g == 155f && b < 155f)
+        //{
+        //    b += 10f;
+        //}
+        //if (r < 255f && g == 155f && b == 155f)
+        //{
+        //    r += 10f;
+        //}
+        //currentColor = new Color(r, g, b);
+        //mat.SetColor("Color_64d861fce71044349695d1bac7f2ea98", currentColor);
     }
 
     IEnumerator CoSpawnWaiting()
