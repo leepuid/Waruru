@@ -38,8 +38,16 @@ public class UIManager : Singleton<UIManager>
     {
         Opennig();
         best = PlayerPrefs.GetInt("BestScore", 0);
+        if (!PlayerPrefs.HasKey("Money"))
+        {
+            PlayerPrefs.SetInt("Money", money);
+            Debug.Log("돈이다");
+        }
+        else
+        {
+            money = int.Parse(Crypto.LoadEncryptedData("Money"));
+        }
         bestScoreTxt.text = "Best : " + best.ToString();
-        Debug.Log(best);
         if (Input.GetMouseButton(0))
         {
             GameStart();
@@ -48,6 +56,13 @@ public class UIManager : Singleton<UIManager>
 
     private void Update()
     {
+        if(Main.Game._gameState == GameState.Over)
+        {
+            if(Input.GetMouseButton(0))
+            {
+                Main.Game._gameState = GameState.End;
+            }
+        }
         if(Main.Game._gameState == GameState.End && !isStateCheck)
         {
             GameOver();
@@ -91,7 +106,7 @@ public class UIManager : Singleton<UIManager>
                 endUI.gameObject.SetActive(true);
                 isStateCheck = true;
                 endUI.DOFade(1, 1.0f);
-                Debug.Log(best);
+                
                 SaveScore();
             }
         }
@@ -177,8 +192,10 @@ public class UIManager : Singleton<UIManager>
         int cnt = int.Parse(scoreTxt.text);
         cntScoreTxt.text = "Score : " + cnt;
         money += cnt;
-        moneyTxt.text = money.ToString(); 
-        if(cnt > best)
+        Crypto.SaveEncryptedData("Money", money.ToString());
+        string moneyData = Crypto.LoadEncryptedData("Money");
+        moneyTxt.text = moneyData;
+        if (cnt > best)
         {
             best = cnt;
             PlayerPrefs.SetInt("BestScore", best);

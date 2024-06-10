@@ -62,8 +62,22 @@ public class Domino : MonoBehaviour
         {
             _isFallDown = true;
             CameraControl.ins.SetTarget(transform, true);
-            Main.Game._gameState = GameState.End;
+            Main.Game._gameState = GameState.Over;
+            StartCoroutine(CheckDominoDown());
         }
+    }
+
+    private IEnumerator CheckDominoDown()
+    {
+        Main.Game._timer = 0.0f;
+
+        while (Main.Game._timer < 9.0f)
+        {
+            Main.Game._timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Main.Game._gameState = GameState.End;
     }
 
     private void GetPoint()
@@ -181,7 +195,7 @@ public class Domino : MonoBehaviour
         while (!_dominoRb.IsSleeping())
         {
             yield return null;
-            if (Main.Game._gameState == GameState.End)
+            if (Main.Game._gameState == GameState.Over || Main.Game._gameState == GameState.End)
                 yield break;
         }
         if (!_isFallDown) GetPoint();

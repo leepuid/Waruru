@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager
 {
     public GameState _gameState = GameState.Ready;
+    public float _timer;
     private int _score;
     private float _currentSpeed = 0.95f;
 
@@ -20,11 +21,11 @@ public class GameManager
         if(_currentSpeed <= 3.0f) _currentSpeed += 0.05f;
         return _currentSpeed;
     }
-
 }
 public enum GameState
 {
     Ready,
     Play,
+    Over,
     End
 }
