@@ -8,6 +8,14 @@ public class GameManager
     public float _timer;
     private int _score;
     private float _currentSpeed = 0.95f;
+    private float _currentHue = 0.9f;
+    
+    public float GetHue() {
+        _currentHue += 0.05f;
+        if (_currentHue > 1.0f)
+            _currentHue = 0.0f;
+        return _currentHue;
+    }
 
     public int GetScore() { return _score; }
     public void AddScore() { 

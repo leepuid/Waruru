@@ -27,7 +27,7 @@ public class Domino : MonoBehaviour
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
         _rotationTime /= _rotationSpeed;
-        //ChangeColor();
+        ChangeColor();
         CameraControl.ins.SetTarget(transform);
     }
 
@@ -158,38 +158,23 @@ public class Domino : MonoBehaviour
         Instantiate(dominoPrefab, _spawnPosition, _spawnRotation);
     }
 
+    public float hueIncrement = 0.01f; // Hue 증가 값 설정
     private void ChangeColor()
     {
-        Color randomColor = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
-        Material mat = gameObject.GetComponent<MeshRenderer>().material;
-        mat.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
-        //Color currentColor = mat.GetColor("Color_64d861fce71044349695d1bac7f2ea98");
-        //float r = currentColor.r;
-        //float g = currentColor.g;
-        //float b = currentColor.b;
-        //if (r == 255f && g == 155f && b < 155f)
-        //{
-        //    b += 10f;
-        //    Debug.Log("변신");
-        //}
-        //if (r > 155f && g == 255f && b == 255f)
-        //{
-        //    r -= 10f;
-        //}
-        //if (r == 155f && g < 255f && b == 255f)
-        //{
-        //    g += 10f;
-        //}
-        //if (r == 155f && g == 155f && b < 155f)
-        //{
-        //    b += 10f;
-        //}
-        //if (r < 255f && g == 155f && b == 155f)
-        //{
-        //    r += 10f;
-        //}
+        Renderer rd = gameObject.GetComponent<Renderer>();
+        float hue = Main.Game.GetHue();
+        //rd.material.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
+        Color currentColor = rd.material.GetColor("_ColorTop");
+
+        //여기에서 색을 변환하는 과정을 넣어줘
+        Color.RGBToHSV(currentColor, out float tmp, out float saturation, out float value);
+        Debug.Log($"휴..{hue}");
+
+        // 새로운 색상을 HSV에서 RGB로 변환
+        currentColor = Color.HSVToRGB(hue, saturation, value);
+
         //currentColor = new Color(r, g, b);
-        //mat.SetColor("Color_64d861fce71044349695d1bac7f2ea98", currentColor);
+        rd.material.SetColor("_ColorTop", currentColor);
     }
 
     IEnumerator CoSpawnWaiting()
