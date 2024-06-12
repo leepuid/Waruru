@@ -43,8 +43,8 @@ public class Domino : MonoBehaviour
         if (Main.Game._gameState != GameState.Play)
             return;
 
-        RotationYDomino();
-        RotationZDomino();
+        //RotationYDomino();
+        //RotationZDomino();
     }
 
     private void Update()
@@ -168,7 +168,7 @@ public class Domino : MonoBehaviour
 
         //여기에서 색을 변환하는 과정을 넣어줘
         Color.RGBToHSV(currentColor, out float tmp, out float saturation, out float value);
-        Debug.Log($"휴..{hue}");
+        Debug.Log($"휴..{hue}, {saturation}");
 
         // 새로운 색상을 HSV에서 RGB로 변환
         currentColor = Color.HSVToRGB(hue, saturation, value);
