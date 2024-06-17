@@ -23,11 +23,11 @@ public class Domino : MonoBehaviour
     private bool _isFallDown = false;
     private void Awake()
     {
-        // _rotationSpeed = UnityEngine.Random.Range(1.0f, 2.51f);
+        // _rotationSpeed = UnityEngine.Random.Range(1.0f, 3.1f);
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
         _rotationTime /= _rotationSpeed;
-        ChangeColor();
+        //ChangeColor();
         CameraControl.ins.SetTarget(transform);
     }
 
@@ -43,8 +43,8 @@ public class Domino : MonoBehaviour
         if (Main.Game._gameState != GameState.Play)
             return;
 
-        //RotationYDomino();
-        //RotationZDomino();
+        RotationYDomino();
+        RotationZDomino();
     }
 
     private void Update()
