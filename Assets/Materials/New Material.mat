@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: New Material
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 83369a0060bc87e43ac5b8f7917194d4,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -17,8 +18,7 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -26,16 +26,20 @@ Material:
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 1, y: 1}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BumpMap:
+    - _CubemapAsset_57f9161b4daa43b1860d6847ed97de50_Out_0_Cubemap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 1, y: 1}
     - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -50,8 +54,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 1, y: 1}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -82,15 +86,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _AlphaToMask: 0
+    - Vector1_04db18677079417e99b7f95a422950d3: 0
+    - Vector1_0c1eff59554148a2892c7222f9ef6edb: 0
+    - Vector1_63a0afd297734dc9998b9b19bd747613: 0.1
+    - Vector1_6e12275293314cb7a52c177f83f8f9aa: 0
+    - Vector1_c77d81e545954cd0b55278e2ba9a8830: 0
+    - Vector1_fde129e198e94c77ac906bc5d7f525ab: 0.1
+    - _AlphaClip: 1
+    - _AlphaToMask: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -102,6 +112,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -113,9 +124,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_4426999063b847ddb3ca0200d0cd3a69: {r: 1, g: 0, b: 0, a: 0}
+    - Color_64d861fce71044349695d1bac7f2ea98: {r: 0, g: 0.23381606, b: 1, a: 0}
+    - Color_c2df8d538a29426d87cca79e3feeba9c: {r: 0, g: 0.23381606, b: 1, a: 0}
+    - Color_d3f90b46fa4040c48d4031973961bef6: {r: 1, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
     - _Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 0.2783019, b: 0.2783019, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5494097418793522839
