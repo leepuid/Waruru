@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
+  m_Name: Neon Material
   m_Shader: {fileID: -6465566751694194690, guid: 0c9492f7347b3ad43b2e13061857c31d,
     type: 3}
   m_Parent: {fileID: -876546973899608171, guid: 0c9492f7347b3ad43b2e13061857c31d,
