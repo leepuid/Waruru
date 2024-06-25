@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &154681931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1951050869187663915, guid: 79cac1c02ea384247b50da944dc4074b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1136642036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253548637
 GameObject:
   m_ObjectHideFlags: 3
@@ -310,6 +316,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2093588903810257700, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
+        type: 3}
+      propertyPath: ItemPrefabs
+      value: 
+      objectReference: {fileID: 154681931}
     - target: {fileID: 2978432040513854807, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -415,26 +426,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5049277339957730226, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
+    - target: {fileID: 5262680518575948170, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5049277339957730226, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5049277339957730226, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -910
-      objectReference: {fileID: 0}
-    - target: {fileID: 5049277339957730226, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 500
-      objectReference: {fileID: 0}
+      propertyPath: ItemPrefabs
+      value: 
+      objectReference: {fileID: 154681931}
     - target: {fileID: 5605378015661768209, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -455,39 +451,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5891471469955542204, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_text
-      value: WARURU
-    - target: {fileID: 6204435939003671704, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6204435939003671704, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6204435939003671704, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -830
-      objectReference: {fileID: 0}
-    - target: {fileID: 6204435939003671704, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 6307879138757044512, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
         type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6358823231841980554, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6841337398861825570, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
         type: 3}

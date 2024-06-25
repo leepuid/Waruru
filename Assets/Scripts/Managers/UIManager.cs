@@ -38,7 +38,17 @@ public class UIManager : Singleton<UIManager>
     private void Start()
     {
         Opennig();
-        best = PlayerPrefs.GetInt("BestScore", 0);
+        if(PlayerPrefs.HasKey("BestScore"))
+        {
+            best = PlayerPrefs.GetInt("BestScore", 0);
+            Debug.Log("불러오기");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("BestScore", best);
+            Debug.Log("저장");
+        }
+
         if (!PlayerPrefs.HasKey("Money"))
         {
             PlayerPrefs.SetInt("Money", money);
