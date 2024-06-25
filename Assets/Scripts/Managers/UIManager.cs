@@ -36,7 +36,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        Opennig();
+        Opening();
         best = PlayerPrefs.GetInt("BestScore", 0);
         if (!PlayerPrefs.HasKey("Money"))
         {
@@ -69,7 +69,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void Opennig()
+    public void Opening()
     {
         startUI.gameObject.SetActive(true);
         startUI.DOFade(1, 1.0f);
