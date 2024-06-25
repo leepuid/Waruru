@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,6 +64,8 @@ public class Domino : MonoBehaviour
             _isFallDown = true;
             CameraControl.ins.SetTarget(transform, true);
             Main.Game._gameState = GameState.Over;
+            Debug.Log("achievement_waruru");
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_waruru, 100, (bool success) => { });
             StartCoroutine(CheckDominoDown());
         }
     }

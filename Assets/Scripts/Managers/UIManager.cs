@@ -37,7 +37,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        Opennig();
+        Opening();
         if(PlayerPrefs.HasKey("BestScore"))
         {
             best = PlayerPrefs.GetInt("BestScore", 0);

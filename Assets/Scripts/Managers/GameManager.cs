@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,44 @@ public class GameManager
     public void AddScore() { 
         _score++;
         UIManager.ins.SetScoreText(_score);
+        switch (_score)
+        {
+            case 1:
+                Debug.Log("achievement_first_step");
+                ReportAchievement(GPGSIds.achievement_first_step);
+                break;
+            case 10:
+                Debug.Log("achievement_at_15x_speed");
+                ReportAchievement(GPGSIds.achievement_at_15x_speed);
+                break;
+            case 20:
+                Debug.Log("achievement_at_20x_speed");
+                ReportAchievement(GPGSIds.achievement_at_20x_speed);
+                break;
+            case 40:
+                Debug.Log("achievement_at_30x_speed");
+                ReportAchievement(GPGSIds.achievement_at_30x_speed);
+                break;
+            case 75:
+                Debug.Log("achievement_persistence");
+                ReportAchievement(GPGSIds.achievement_persistence);
+                break;
+            case 100:
+                Debug.Log("achievement_100");
+                ReportAchievement(GPGSIds.achievement_100);
+                break;
+            case 500:
+                Debug.Log("achievement_god_of_dominoes");
+                ReportAchievement(GPGSIds.achievement_god_of_dominoes);
+                break;
+        }
     }
+
+    private void ReportAchievement(string achievementId)
+    {
+        PlayGamesPlatform.Instance.ReportProgress(achievementId, 100, (bool success) => { });
+    }
+
     public void InitScore() { _score = 0; }
 
     public float GetSpeed() 
@@ -32,6 +70,9 @@ public class GameManager
         }
         else
         {
+            // TODO : 
+            Debug.Log("achievement_at_random_speed");
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_at_random_speed, 100, (bool success) => { });
             return Random.Range(1.0f, 3.1f);
         }
     }
