@@ -22,34 +22,28 @@ public class GameManager
     public void AddScore() { 
         _score++;
         UIManager.ins.SetScoreText(_score);
+        // 업적.
         switch (_score)
         {
             case 1:
-                Debug.Log("achievement_first_step");
                 ReportAchievement(GPGSIds.achievement_first_step);
                 break;
             case 10:
-                Debug.Log("achievement_at_15x_speed");
                 ReportAchievement(GPGSIds.achievement_at_15x_speed);
                 break;
             case 20:
-                Debug.Log("achievement_at_20x_speed");
                 ReportAchievement(GPGSIds.achievement_at_20x_speed);
                 break;
             case 40:
-                Debug.Log("achievement_at_30x_speed");
                 ReportAchievement(GPGSIds.achievement_at_30x_speed);
                 break;
             case 75:
-                Debug.Log("achievement_persistence");
                 ReportAchievement(GPGSIds.achievement_persistence);
                 break;
             case 100:
-                Debug.Log("achievement_100");
                 ReportAchievement(GPGSIds.achievement_100);
                 break;
             case 500:
-                Debug.Log("achievement_god_of_dominoes");
                 ReportAchievement(GPGSIds.achievement_god_of_dominoes);
                 break;
         }
@@ -70,8 +64,7 @@ public class GameManager
         }
         else
         {
-            // TODO : 
-            Debug.Log("achievement_at_random_speed");
+            // 도미노 40개 및 랜덤 속도 업적 달성.
             PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_at_random_speed, 100, (bool success) => { });
             return Random.Range(1.0f, 3.1f);
         }
