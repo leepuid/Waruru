@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class StoreItems : MonoBehaviour
 {
     [SerializeField] private GameObject equipImage; // 장착 표시
-    public Image itemImage;
-    public TMP_Text itemName;
-    public Material skin;
-    private Material skinMaterial;
+    public Image itemImage; // 스킨 이미지
+    public TMP_Text itemName;   // 스킨 이름
+    public Material skin; // 머터리얼 데이터 
+    private int price = 2; // 스킨 가격
+    private Material skinMaterial; // 넘겨줄 머터리얼
     private bool isPurchased = false; // 구매 여부
-
     private bool isEquip = false; // 장착 여부
 
     private StoreItemsManager storeItemsManager;
@@ -26,26 +26,41 @@ public class StoreItems : MonoBehaviour
         skinMaterial = material;
     }
 
-    public void Purchased()
+    private void SkinBuy()
     {
-        if(!isPurchased)
+        if (UIManager.money >= price)
         {
-            Debug.Log("구매되지 않았습니다.");
-            return;
-        }
-
-        if (!isEquip)
-        {
-            storeItemsManager.EquipSkin(this);
-            isEquip = true;
-            Debug.Log(itemName.text + "장착 O ");
-            equipImage.SetActive(true);
-            skinMaterial = skin;
-            storeItemsManager.ItemPrefabs.GetComponent<Renderer>().material = skinMaterial;
+            UIManager.money -= price;
+            isPurchased = true;
         }
         else
         {
-            Unequip();
+            Debug.Log("돈이 부족합니다.");
+        }
+    }
+
+    public void Purchased()
+    {
+        if(isPurchased)
+        {
+            if (!isEquip)
+            {
+                storeItemsManager.EquipSkin(this);
+                isEquip = true;
+                Debug.Log(itemName.text + "장착 O ");
+                equipImage.SetActive(true);
+                skinMaterial = skin;
+                storeItemsManager.ItemPrefabs.GetComponent<Renderer>().material = skinMaterial;
+            }
+            else
+            {
+                Unequip();
+            }
+        }
+        else
+        {
+            Debug.Log("구매되어 있지 않습니다. 그러므로 구매하겠습니다.");
+            SkinBuy();
         }
     }
 
