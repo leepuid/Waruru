@@ -9,13 +9,14 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [Header ("Start UI")]
-    [SerializeField]  private CanvasGroup startUI;    // Main화면 UI
-    [SerializeField]  private CanvasGroup endUI;   // GameOver UI
+    [SerializeField] private CanvasGroup startUI;    // Main - startUI
+    [SerializeField] private GameObject menu; // startUI 하단 아이콘 묶음
+    [SerializeField] private GameObject info; // startUI 좌측 상단 아이콘
+    [SerializeField] private GameObject title; // title
+    [SerializeField] private CanvasGroup endUI;   // GameOver UI
     [SerializeField] private GameObject store;    // 상점 UI 버튼
     [SerializeField] private GameObject ad;   // 광고 제거 UI 버튼
     [SerializeField] private GameObject setting;  // 설정 UI 버튼
-    [SerializeField] private GameObject buyCheck; // 구매 의사를 묻는 UI
-    [SerializeField] private GameObject[] items;
 
     [Header ("InGame UI")]
     [SerializeField] private TMP_Text scoreTxt;   // 실시간 점수 UI 텍스트
@@ -37,11 +38,20 @@ public class UIManager : Singleton<UIManager>
     private void Start()
     {
         Opennig();
-        best = PlayerPrefs.GetInt("BestScore", 0);
+        if(PlayerPrefs.HasKey("BestScore"))
+        {
+            best = PlayerPrefs.GetInt("BestScore", 0);
+            Debug.Log("불러오기");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("BestScore", best);
+            Debug.Log("저장");
+        }
+
         if (!PlayerPrefs.HasKey("Money"))
         {
             PlayerPrefs.SetInt("Money", money);
-            Debug.Log("돈이다");
         }
         else
         {
@@ -121,6 +131,8 @@ public class UIManager : Singleton<UIManager>
         }
         go.SetActive(true);
          isPopUpOpen = true;
+        info.SetActive(false);
+        title.SetActive(false);
         stack.Push(go);
 
         Sequence sequence = DOTween.Sequence();
@@ -134,7 +146,8 @@ public class UIManager : Singleton<UIManager>
         if (stack.Count > 0 && stack.Peek() == go)
         {
             GameObject current = stack.Pop();
-
+            info.SetActive(true);
+            title.SetActive(true);
             Sequence sequence = DOTween.Sequence();
             sequence.Append(go.transform.DOScale(1.0f, 0.1f));
             sequence.Append(go.transform.DOScale(0.3f, 0.1f));
@@ -158,21 +171,12 @@ public class UIManager : Singleton<UIManager>
 
     public void StorePopUp()
     {
-        TogglePopUp(store);  
+        TogglePopUp(store);
     }
 
     public void SettingPopUp()
     {
         TogglePopUp(setting);
-    }
-
-    public void BuyPopUpOpen()
-    {
-        buyCheck.SetActive(true);
-    }
-    public void BuyPopUpClose()
-    {
-        buyCheck.SetActive(false);
     }
 
     public void SetScoreText(int score)
@@ -199,7 +203,6 @@ public class UIManager : Singleton<UIManager>
         {
             best = cnt;
             PlayerPrefs.SetInt("BestScore", best);
-            Debug.Log(best);
             PlayerPrefs.Save();
             bestScoreTxt.text = "Best : " + best.ToString();
         }
