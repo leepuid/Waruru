@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Domino : MonoBehaviour
 {
-    [SerializeField] GameObject dominoPrefab;
+    public GameObject dominoPrefab;
 
     private Vector3 _rotation;
     private Vector3 _spawnPosition;
