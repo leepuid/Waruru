@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
+using GooglePlayGames;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -197,6 +199,7 @@ public class UIManager : Singleton<UIManager>
     private void SaveScore()
     {
         int cnt = int.Parse(scoreTxt.text);
+        PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, (bool success) => { });
         cntScoreTxt.text = "Score : " + cnt;
         money += cnt;
         Crypto.SaveEncryptedData("Money", money.ToString());
@@ -208,6 +211,11 @@ public class UIManager : Singleton<UIManager>
             PlayerPrefs.SetInt("BestScore", best);
             PlayerPrefs.Save();
             bestScoreTxt.text = "Best : " + best.ToString();
+            PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, (bool success) => { });
         }
+    }
+    public void ShowLeaderBoard()
+    {
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_score);
     }
 }
