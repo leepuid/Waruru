@@ -16,22 +16,28 @@ public class StoreItems : MonoBehaviour
     private Material skinMaterial; // 넘겨줄 머터리얼
     private bool isPurchased = false; // 구매 여부
     private bool isEquip = false; // 장착 여부
-    private int skinID = 0;
+    public int skinID; // 스킨 번호
     private StoreItemsManager storeItemsManager;
 
-    private void Start()
+    private void Awake()
     {
+        SetSkinID(skinID);
         isPurchased = IsSkinPurchased(skinID);
+        isEquip = PlayerPrefs.GetInt("SkinEquip" + skinID.ToString(), 0) == 1;
 
-        if(isPurchased )
+        if (skinID == 0)
         {
-            isEquip = PlayerPrefs.GetInt("SkinEquip" + skinID.ToString(), 0) == 1;
-        
-            if(isEquip )
-            {
-                Equip();
-            }
-        
+            isPurchased = true;
+            isEquip = true;
+        }
+
+        if (isPurchased && isEquip)
+        {
+            Equip(true);
+        }
+        else
+        {
+            UpdateDisplay();
         }
     }
 
@@ -43,8 +49,11 @@ public class StoreItems : MonoBehaviour
     {
         skinMaterial = material;
     }
-
-    private void SkinBuy(int skinID)
+    public void SetSkinID(int id)
+    {
+        skinID = id;
+    }
+    private void SkinBuy()
     {
         if (UIManager.money >= price)
         {
@@ -52,9 +61,11 @@ public class StoreItems : MonoBehaviour
             Crypto.SaveEncryptedData("Money", UIManager.money.ToString());
             isPurchased = true;
             PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);
-            GetComponent<StoreItems>().itemImage.color = Color.white;
+            itemImage.color = Color.white;
             PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_fashionista, (bool success) => { });
             PlayerPrefs.Save();
+
+            Equip();
         }
         else
         {
@@ -71,37 +82,60 @@ public class StoreItems : MonoBehaviour
         else
         {
             Debug.Log("구매되어 있지 않습니다. 그러므로 구매하겠습니다.");
-            SkinBuy(skinID);
+            SkinBuy();
         }
     }
-    private void Equip()
+    private void Equip(bool forceEquip = false)
     {
-        if (!isEquip)
+        if (isEquip && !forceEquip)
         {
-            storeItemsManager.EquipSkin(this);
-            isEquip = true;
-            Debug.Log(itemName.text + "장착 O ");
-            equipImage.SetActive(true);
-            skinMaterial = skin;
-            storeItemsManager.ItemPrefabs.GetComponent<Renderer>().material = skinMaterial;
+            Debug.Log(itemName.text + " 이미 장착된 상태입니다.");
+            return;
         }
-        else
-        {
-            Unequip();
-        }
+
+        storeItemsManager.EquipSkin(this);
+        isEquip = true;
+
+        equipImage.SetActive(true);
+        Debug.Log(itemName.text + "장착 O ");
+
+        skinMaterial = skin;
+        storeItemsManager.ItemPrefabs.GetComponent<Renderer>().material = skinMaterial;
+
+        PlayerPrefs.SetInt("SkinEquip" + skinID.ToString(), 1);
+        PlayerPrefs.Save();
     }
 
     public void Unequip()
     {
-        isEquip = false;
-        Debug.Log(itemName.text + "장착 X ");
-        equipImage.SetActive(false);
+        if (isEquip)
+        {
+            isEquip = false;
 
-        storeItemsManager.UnequipItem(this);
+            Debug.Log(itemName.text + "장착 X ");
+            equipImage.SetActive(false);
+
+            PlayerPrefs.SetInt("SkinEquip" + skinID.ToString(), 0);
+            PlayerPrefs.Save();
+
+            storeItemsManager.UnequipItem(this);
+        }
     }
 
     public bool IsSkinPurchased(int skinID)
     {
         return PlayerPrefs.GetInt("Skin" + skinID.ToString(), 0) == 1;
+    }
+
+    private void UpdateDisplay()
+    {
+        if (isPurchased)
+        {
+            itemImage.color = Color.white;
+        }
+        else
+        {
+            itemImage.color = Color.black;
+        }
     }
 }

@@ -363,7 +363,8 @@ MonoBehaviour:
   equipImage: {fileID: 799912118624534512}
   itemImage: {fileID: 3191443955507110083}
   itemName: {fileID: 2605497610799500832}
-  currnetSkin: {fileID: 2100000, guid: 95fb154bd0f1fab4b9afac13b739ea81, type: 2}
+  skin: {fileID: 0}
+  skinID: 0
 --- !u!1 &8936315844151946926
 GameObject:
   m_ObjectHideFlags: 0
