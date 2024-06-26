@@ -1,3 +1,4 @@
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,7 +32,9 @@ public class StoreItems : MonoBehaviour
         if (UIManager.money >= price)
         {
             UIManager.money -= price;
+            PlayerPrefs.SetInt("Money", UIManager.money);
             isPurchased = true;
+            PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_fashionista, (bool success) => { });
         }
         else
         {

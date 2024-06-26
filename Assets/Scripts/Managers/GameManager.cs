@@ -44,7 +44,7 @@ public class GameManager
                 ReportAchievement(GPGSIds.achievement_100);
                 break;
             case 500:
-                ReportAchievement(GPGSIds.achievement_god_of_dominoes);
+                PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_god_of_dominoes, (bool success) => { });
                 break;
         }
     }
