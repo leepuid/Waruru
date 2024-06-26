@@ -32,7 +32,7 @@ public class StoreItems : MonoBehaviour
         if (UIManager.money >= price)
         {
             UIManager.money -= price;
-            PlayerPrefs.SetInt("Money", UIManager.money);
+            Crypto.SaveEncryptedData("Money", UIManager.money.ToString());
             isPurchased = true;
             PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_fashionista, (bool success) => { });
         }
