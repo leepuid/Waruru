@@ -33,7 +33,7 @@ public class UIManager : Singleton<UIManager>
     private bool isPopUpOpen = false;
 
     private int best;
-    private static int money;
+    public static int money;
 
     private void Start()
     {
