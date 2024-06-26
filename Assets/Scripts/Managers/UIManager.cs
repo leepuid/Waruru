@@ -38,6 +38,7 @@ public class UIManager : Singleton<UIManager>
     private void Start()
     {
         Opening();
+
         if(PlayerPrefs.HasKey("BestScore"))
         {
             best = PlayerPrefs.GetInt("BestScore", 0);
@@ -57,7 +58,9 @@ public class UIManager : Singleton<UIManager>
         {
             money = int.Parse(Crypto.LoadEncryptedData("Money"));
         }
+
         bestScoreTxt.text = "Best : " + best.ToString();
+
         if (Input.GetMouseButton(0))
         {
             GameStart();
