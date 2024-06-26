@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -194,9 +195,11 @@ public class UIManager : Singleton<UIManager>
         SceneManager.LoadScene(0);
     }
 
+
     private void SaveScore()
     {
         int cnt = int.Parse(scoreTxt.text);
+        PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, (bool success) => { });
         cntScoreTxt.text = "Score : " + cnt;
         money += cnt;
         Crypto.SaveEncryptedData("Money", money.ToString());
@@ -208,6 +211,11 @@ public class UIManager : Singleton<UIManager>
             PlayerPrefs.SetInt("BestScore", best);
             PlayerPrefs.Save();
             bestScoreTxt.text = "Best : " + best.ToString();
+            PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, (bool success) => { });
         }
+    }
+    public void ShowLeaderBoard()
+    {
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_score);
     }
 }
