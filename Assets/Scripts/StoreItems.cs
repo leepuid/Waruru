@@ -49,7 +49,7 @@ public class StoreItems : MonoBehaviour
         if (UIManager.money >= price)
         {
             UIManager.money -= price;
-            PlayerPrefs.SetInt("Money", UIManager.money);
+            Crypto.SaveEncryptedData("Money", UIManager.money.ToString());
             isPurchased = true;
             PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);
             GetComponent<StoreItems>().itemImage.color = Color.white;
