@@ -192,7 +192,7 @@ public class UIManager : Singleton<UIManager>
     {
         Main.Game._gameState = GameState.Ready;
         isStateCheck = false;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 

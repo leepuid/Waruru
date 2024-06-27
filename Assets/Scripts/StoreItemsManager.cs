@@ -19,6 +19,12 @@ public class StoreItemsManager : MonoBehaviour
         {
             storeItemsList[i].SetSkinID(i);
             storeItemsList[i].SetStoreItemsManager(this);
+
+            int lastEquippedSkinID = PlayerPrefs.GetInt("LastEquippedSkinID", -1);
+            if (lastEquippedSkinID == i)
+            {
+                storeItemsList[i].Equip();
+            }
         }
     }
 
@@ -30,6 +36,9 @@ public class StoreItemsManager : MonoBehaviour
         }
 
         currentItem = newItem;
+
+        PlayerPrefs.SetInt("LastEquippedSkinID", newItem.skinID);
+        PlayerPrefs.Save();
     }
 
     public void UnequipItem(StoreItems item)
