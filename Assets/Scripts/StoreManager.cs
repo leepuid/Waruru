@@ -12,7 +12,7 @@ public class StoreManager : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < skins.Length;  i++)
+        for (int i = 0; i < skins.Length; i++)
         {
             GameObject item = Instantiate(itemPrefabs, itemGridTransform);
             StoreItems storeItems = item.GetComponent<StoreItems>();
@@ -23,9 +23,14 @@ public class StoreManager : MonoBehaviour
             storeItems.SetSkinMaterial(skins[i]);
             storeItems.SetSkinID(i);
 
-            if (i == 0)
+            if (storeItems.IsSkinPurchased())
             {
                 storeItems.Purchased();
+
+                if (i == PlayerPrefs.GetInt("LastEquippedSkinID", 0))
+                {
+                    storeItems.Equip();
+                }
             }
         }
     }

@@ -8,14 +8,11 @@ public class StoreItemsManager : MonoBehaviour
     public List<StoreItems> storeItemsList;
     private StoreItems currentItem = null;
 
-    public StoreItemsManager()
-    {
-        currentItem = null;
-    }
     private void Start()
     {
         InitializeStoreItems();
     }
+
     private void InitializeStoreItems()
     {
         for (int i = 0; i < storeItemsList.Count; i++)
@@ -24,6 +21,7 @@ public class StoreItemsManager : MonoBehaviour
             storeItemsList[i].SetStoreItemsManager(this);
         }
     }
+
     public void EquipSkin(StoreItems newItem)
     {
         if (currentItem != null)
