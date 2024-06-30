@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Domino : MonoBehaviour
 {
-    public GameObject dominoPrefab;
+    [SerializeField] GameObject dominoPrefab;
     [SerializeField] GameObject flipDominoPredfab;
 
     private Vector3 _rotation;
@@ -25,7 +25,7 @@ public class Domino : MonoBehaviour
     private bool _isFallDown = false;
     private void Awake()
     {
-        flipDominoPredfab.transform.rotation = Quaternion.identity;
+        flipDominoPredfab.transform.localRotation = Quaternion.Euler(Vector3.zero);
         // _rotationSpeed = UnityEngine.Random.Range(1.0f, 3.1f);
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
@@ -153,8 +153,10 @@ public class Domino : MonoBehaviour
     {
         if (transform.rotation.eulerAngles.z > 180)
         {
+            float newYRotation = transform.rotation.eulerAngles.y + 180;
+            float newZRotation = (360 - transform.rotation.eulerAngles.z) % 360;
             flipDominoPredfab.transform.rotation = Quaternion.Euler(
-                            transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z * -1);
+                            transform.rotation.eulerAngles.x, newYRotation, newZRotation);
         }
     }
 
