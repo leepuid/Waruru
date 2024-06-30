@@ -7,6 +7,7 @@ using UnityEngine;
 public class Domino : MonoBehaviour
 {
     public GameObject dominoPrefab;
+    [SerializeField] GameObject flipDominoPredfab;
 
     private Vector3 _rotation;
     private Vector3 _spawnPosition;
@@ -24,6 +25,7 @@ public class Domino : MonoBehaviour
     private bool _isFallDown = false;
     private void Awake()
     {
+        flipDominoPredfab.transform.rotation = Quaternion.identity;
         // _rotationSpeed = UnityEngine.Random.Range(1.0f, 3.1f);
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
@@ -106,11 +108,7 @@ public class Domino : MonoBehaviour
                 {
                     _spawnPosition = transform.position + transform.forward;
                     _spawnRotation = transform.rotation;
-                    if (transform.rotation.eulerAngles.z > 180)
-                    {
-                        transform.rotation = Quaternion.Euler(
-                            transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z * -1);
-                    }
+                    FlipYDomino();
                     CameraControl.ins.SetTarget(null);
                     StartCoroutine(CoSpawnWaiting());
                     _isSpawn = true;
@@ -148,6 +146,15 @@ public class Domino : MonoBehaviour
         {
             _rotation = _rotation + new Vector3(0.0f, 0.0f, _rotationDomino * _turnDirection) * Time.fixedDeltaTime * _rotationSpeed;
             transform.rotation = Quaternion.Euler(_rotation);
+        }
+    }
+
+    private void FlipYDomino()
+    {
+        if (transform.rotation.eulerAngles.z > 180)
+        {
+            flipDominoPredfab.transform.rotation = Quaternion.Euler(
+                            transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z * -1);
         }
     }
 
