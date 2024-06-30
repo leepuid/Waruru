@@ -8,6 +8,7 @@ public class Domino : MonoBehaviour
 {
     public GameObject dominoPrefab;
 
+    [SerializeField] private GameObject _collider;
     private Vector3 _rotation;
     private Vector3 _spawnPosition;
     private Quaternion _spawnRotation;
@@ -108,7 +109,7 @@ public class Domino : MonoBehaviour
                     _spawnRotation = transform.rotation;
                     if (transform.rotation.eulerAngles.z > 180)
                     {
-                        transform.rotation = Quaternion.Euler(
+                        _collider.transform.rotation = Quaternion.Euler(
                             transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z * -1);
                     }
                     CameraControl.ins.SetTarget(null);
