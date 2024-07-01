@@ -748,6 +748,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Domino
       objectReference: {fileID: 0}
+    - target: {fileID: 6540996507696121964, guid: 79cac1c02ea384247b50da944dc4074b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 95fb154bd0f1fab4b9afac13b739ea81, type: 2}
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
       propertyPath: m_RootOrder
