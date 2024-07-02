@@ -20,18 +20,20 @@ public class StoreManager : MonoBehaviour
             storeItems.itemName.text = "스킨 " + (i + 1);
             storeItems.skin = skins[i];
             storeItems.SetStoreItemsManager(storeItemsManager);
-            storeItems.SetSkinMaterial(skins[i]);
             storeItems.SetSkinID(i);
 
             if (storeItems.IsSkinPurchased())
             {
-                storeItems.Purchased();
-
-                if (i == PlayerPrefs.GetInt("LastEquippedSkinID", 0))
-                {
-                    storeItems.Equip();
-                }
+                storeItems.UpdateDisplay();
             }
+            else
+            {
+                storeItems.UpdateDisplay();
+            }
+
+            storeItemsManager.storeItemsList.Add(storeItems);
         }
+
+        storeItemsManager.InitializeStoreItems();
     }
 }

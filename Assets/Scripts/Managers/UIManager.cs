@@ -195,7 +195,6 @@ public class UIManager : Singleton<UIManager>
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-
     private void SaveScore()
     {
         int cnt = int.Parse(scoreTxt.text);
