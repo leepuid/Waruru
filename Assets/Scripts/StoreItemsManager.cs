@@ -13,17 +13,26 @@ public class StoreItemsManager : MonoBehaviour
         InitializeStoreItems();
     }
 
-    private void InitializeStoreItems()
+    public void InitializeStoreItems()
     {
+        int lastEquippedSkinID = PlayerPrefs.GetInt("LastEquippedSkinID", 0);
+
         for (int i = 0; i < storeItemsList.Count; i++)
         {
             storeItemsList[i].SetSkinID(i);
             storeItemsList[i].SetStoreItemsManager(this);
 
-            int lastEquippedSkinID = PlayerPrefs.GetInt("LastEquippedSkinID", -1);
-            if (lastEquippedSkinID == i)
+            if (storeItemsList[i].IsSkinPurchased())
             {
-                storeItemsList[i].Equip();
+                storeItemsList[i].UpdateDisplay();
+                if (i == lastEquippedSkinID)
+                {
+                    EquipSkin(storeItemsList[i]);
+                }
+            }
+            else
+            {
+                storeItemsList[i].UpdateDisplay();
             }
         }
     }
@@ -32,10 +41,11 @@ public class StoreItemsManager : MonoBehaviour
     {
         if (currentItem != null)
         {
-            currentItem.Unequip();
+            currentItem.UnequipInternal();
         }
 
         currentItem = newItem;
+        newItem.EquipInternal();
 
         PlayerPrefs.SetInt("LastEquippedSkinID", newItem.skinID);
         PlayerPrefs.Save();
