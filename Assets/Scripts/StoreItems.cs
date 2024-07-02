@@ -19,21 +19,39 @@ public class StoreItems : MonoBehaviour
     public int skinID; // 스킨 번호
     private StoreItemsManager storeItemsManager;
 
+    private bool isFirstEntry = true; // 상점 진입 첫 번째 여부
+
     private void Awake()
     {
         SetSkinID(skinID);
 
-        isPurchased = IsSkinPurchased();
+        isFirstEntry = PlayerPrefs.GetInt("FirstEntry", 1) == 1;
 
-        if (isDefaultSkin())
+        isPurchased = IsSkinPurchased();
+        isEquip = IsSkinEquipped(skinID);
+
+        if (isFirstEntry && isDefaultSkin())
         {
-            isPurchased = true;
-            PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);
-            PlayerPrefs.SetInt("SkinEquip" + skinID.ToString(), 1);
+            PurchaseAndEquipDefaultSkin();
+            isFirstEntry = false;
+
+            PlayerPrefs.SetInt("FirstEntry", isFirstEntry ? 1 : 0);
             PlayerPrefs.Save();
         }
 
         UpdateDisplay();
+    }
+
+    private void Start()
+    {
+        if (isFirstEntry)
+        {
+            isFirstEntry = false;
+        }
+        else
+        {
+            UpdateDisplay();
+        }
     }
 
     public void SetSkinID(int id)
@@ -66,6 +84,8 @@ public class StoreItems : MonoBehaviour
 
             PlayerPrefs.SetInt("SkinEquip" + skinID.ToString(), 0);
             PlayerPrefs.Save();
+
+            UpdateDisplay();
         }
     }
 
@@ -73,11 +93,15 @@ public class StoreItems : MonoBehaviour
     {
         return PlayerPrefs.GetInt("Skin" + skinID.ToString(), 0) == 1;
     }
+    public bool IsSkinEquipped(int skinID)
+    {
+        return PlayerPrefs.GetInt("SkinEquip" + skinID.ToString(), 0) == 1;
+    }
 
     public void UpdateDisplay()
     {
-        itemImage.color = isPurchased ? Color.white : Color.black;
         equipImage.SetActive(isEquip);
+        itemImage.color = isPurchased ? Color.white : Color.black;
     }
 
     private bool isDefaultSkin()
@@ -121,5 +145,17 @@ public class StoreItems : MonoBehaviour
     public void SetStoreItemsManager(StoreItemsManager manager)
     {
         storeItemsManager = manager;
+    }
+
+    private void PurchaseAndEquipDefaultSkin()
+    {
+        isPurchased = true;
+        isEquip = true;
+
+        PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);
+        PlayerPrefs.SetInt("SkinEquip" + skinID.ToString(), 1);
+        PlayerPrefs.Save();
+
+         UpdateDisplay();
     }
 }
