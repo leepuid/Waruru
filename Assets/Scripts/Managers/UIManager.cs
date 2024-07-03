@@ -203,7 +203,7 @@ public class UIManager : Singleton<UIManager>
         money += cnt;
         Crypto.SaveEncryptedData("Money", money.ToString());
         string moneyData = Crypto.LoadEncryptedData("Money");
-        moneyTxt.text = moneyData;
+        //moneyTxt.text = moneyData;
         if (cnt > best)
         {
             best = cnt;
