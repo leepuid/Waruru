@@ -217,4 +217,9 @@ public class UIManager : Singleton<UIManager>
     {
         PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_score);
     }
+
+    public void ShowAchievementUI()
+    {
+        PlayGamesPlatform.Instance.ShowAchievementsUI();
+    }
 }
