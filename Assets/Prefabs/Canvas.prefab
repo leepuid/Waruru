@@ -3473,20 +3473,28 @@ MonoBehaviour:
   skins:
   - {fileID: 2100000, guid: 95fb154bd0f1fab4b9afac13b739ea81, type: 2}
   - {fileID: 2100000, guid: 6f8d8c1458f3c75488f1636c313520c0, type: 2}
+  - {fileID: 2100000, guid: f3e876c076988234399e8fe83d0d0bbc, type: 2}
+  - {fileID: 2100000, guid: 15c2b90e65e6e2f41a8d66f1498af6b4, type: 2}
   - {fileID: 2100000, guid: ac33ca16790faa4489d501fe1a9bf159, type: 2}
+  - {fileID: 2100000, guid: fc5c2df8322ad3f4d8a42b55a44c074c, type: 2}
+  - {fileID: 2100000, guid: e6768e7da521e0e4f8988d0ce7a693e6, type: 2}
   - {fileID: 2100000, guid: 2d890f8fc565db146985b95732118932, type: 2}
   - {fileID: 2100000, guid: 0026e16ae1175674fb0882d293ddc099, type: 2}
   itemGridTransform: {fileID: 8809372593973022691}
   storeItemsManager: {fileID: 2093588903810257700}
   colorPick:
-  - {r: 0.15294118, g: 0.1764706, b: 0.20392159, a: 0}
-  - {r: 0.17254902, g: 0.6745098, b: 0.6901961, a: 0}
-  - {r: 0.48235297, g: 0.121568635, b: 0.6313726, a: 0}
-  - {r: 0.19215688, g: 0.7725491, b: 0.3803922, a: 0}
-  - {r: 0.69803923, g: 0.4431373, b: 0.16078432, a: 0}
+  - {r: 0.8784314, g: 0.8784314, b: 0.92941177, a: 1}
+  - {r: 0.15294118, g: 0.1764706, b: 0.20392159, a: 1}
+  - {r: 0.21960782, g: 0.76577026, b: 0.81960785, a: 1}
+  - {r: 1, g: 0.7311321, b: 0.9071364, a: 1}
+  - {r: 1, g: 0.80857843, b: 0.514151, a: 1}
+  - {r: 0.22293939, g: 0.6226415, b: 0.20265219, a: 1}
   imagePrefabs: {fileID: 3836530516519154265, guid: c316ec21fa2640646be2950ea0b6d932,
     type: 3}
   imageTransform: {fileID: 1944512278118048430}
+  planeNumber: 0
+  planCubeChange: {fileID: 4917767506671220200, guid: c316ec21fa2640646be2950ea0b6d932,
+    type: 3}
 --- !u!114 &2093588903810257700
 MonoBehaviour:
   m_ObjectHideFlags: 0
