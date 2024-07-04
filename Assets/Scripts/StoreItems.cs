@@ -18,7 +18,6 @@ public class StoreItems : MonoBehaviour
     public bool isEquip = false; // 장착 여부
     public int skinID; // 스킨 번호
     private StoreItemsManager storeItemsManager;
-
     private bool isFirstEntry = true; // 상점 진입 첫 번째 여부
 
     private void Awake()
@@ -88,7 +87,6 @@ public class StoreItems : MonoBehaviour
             UpdateDisplay();
         }
     }
-
     public bool IsSkinPurchased()
     {
         return PlayerPrefs.GetInt("Skin" + skinID.ToString(), 0) == 1;
@@ -115,6 +113,8 @@ public class StoreItems : MonoBehaviour
         {
             UIManager.money -= price;
             Crypto.SaveEncryptedData("Money", UIManager.money.ToString());
+            string moneyData = Crypto.LoadEncryptedData("Money");
+            UIManager.ins.UpdateMoneyText(moneyData);
 
             isPurchased = true;
             PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);

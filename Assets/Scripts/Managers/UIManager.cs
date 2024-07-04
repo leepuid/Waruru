@@ -26,7 +26,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject share;    // 공유 UI 버튼
     [SerializeField] private TMP_Text bestScoreTxt; // 기록 중 가장 높은 점수
     [SerializeField] private TMP_Text cntScoreTxt;  // 이번 시도의 점수
-    [SerializeField] private TMP_Text moneyTxt; // 재화 텍스트
+    [SerializeField] TMP_Text moneyTxt; // 재화 텍스트
     
     private Stack<GameObject> stack = new();
     
@@ -166,7 +166,7 @@ public class UIManager : Singleton<UIManager>
 
     private void TogglePopUp(GameObject go)
     {
-        if(isPopUpOpen && stack.Peek() == go)
+        if(isPopUpOpen && stack.Peek() == go)   
         {
             ClosePopUp(go);
         }
@@ -206,7 +206,7 @@ public class UIManager : Singleton<UIManager>
         money += cnt;
         Crypto.SaveEncryptedData("Money", money.ToString());
         string moneyData = Crypto.LoadEncryptedData("Money");
-        moneyTxt.text = moneyData;
+        UpdateMoneyText(moneyData);
         if (cnt > best)
         {
             best = cnt;
@@ -224,5 +224,9 @@ public class UIManager : Singleton<UIManager>
     public void ShowAchievementUI()
     {
         PlayGamesPlatform.Instance.ShowAchievementsUI();
+    }
+    public void UpdateMoneyText(string moneyData)
+    {
+        moneyTxt.text = moneyData;
     }
 }

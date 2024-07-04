@@ -31,7 +31,7 @@ public class StoreManager : MonoBehaviour
 
             int currentNumber = planeNumber;
             Button button = go.GetComponent<Button>();
-            if (button != null)
+            if (button != null) 
             {
                 button.onClick.AddListener(() => planCubeChange.CubeColorChange(currentNumber));
             }
