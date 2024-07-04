@@ -60,6 +60,7 @@ public class UIManager : Singleton<UIManager>
             money = int.Parse(Crypto.LoadEncryptedData("Money"));
         }
 
+        moneyTxt.text = Crypto.LoadEncryptedData("Money");
         bestScoreTxt.text = "Best : " + best.ToString();
 
         if (Input.GetMouseButton(0))
@@ -137,6 +138,7 @@ public class UIManager : Singleton<UIManager>
          isPopUpOpen = true;
         info.SetActive(false);
         title.SetActive(false);
+        scoreTxt.enabled = false;
         stack.Push(go);
 
         Sequence sequence = DOTween.Sequence();
@@ -152,6 +154,7 @@ public class UIManager : Singleton<UIManager>
             GameObject current = stack.Pop();
             info.SetActive(true);
             title.SetActive(true);
+            scoreTxt.enabled = true;
             Sequence sequence = DOTween.Sequence();
             sequence.Append(go.transform.DOScale(1.0f, 0.1f));
             sequence.Append(go.transform.DOScale(0.3f, 0.1f));
@@ -203,7 +206,7 @@ public class UIManager : Singleton<UIManager>
         money += cnt;
         Crypto.SaveEncryptedData("Money", money.ToString());
         string moneyData = Crypto.LoadEncryptedData("Money");
-        //moneyTxt.text = moneyData;
+        moneyTxt.text = moneyData;
         if (cnt > best)
         {
             best = cnt;
