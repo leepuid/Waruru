@@ -12,7 +12,8 @@ public class UIManager : Singleton<UIManager>
     [Header ("Start UI")]
     [SerializeField] private CanvasGroup startUI;    // Main - startUI
     [SerializeField] private GameObject menu; // startUI 하단 아이콘 묶음
-    [SerializeField] private GameObject info; // startUI 좌측 상단 아이콘
+    [SerializeField] private GameObject infoPopUp; // startUI 좌측 상단 아이콘
+    [SerializeField] private GameObject info; // Info 버튼
     [SerializeField] private GameObject title; // title
     [SerializeField] private CanvasGroup endUI;   // GameOver UI
     [SerializeField] private GameObject store;    // 상점 UI 버튼
@@ -184,6 +185,11 @@ public class UIManager : Singleton<UIManager>
     public void SettingPopUp()
     {
         TogglePopUp(setting);
+    }
+
+    public void InfoPopUp()
+    {
+        TogglePopUp(infoPopUp);
     }
 
     public void SetScoreText(int score)
