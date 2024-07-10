@@ -9,6 +9,7 @@ public class StoreManager : MonoBehaviour
     [Header("Skins")]
     [SerializeField] private GameObject itemPrefabs;
     [SerializeField] private Material[] skins;
+    [SerializeField] private Sprite[] skinImages;
     [SerializeField] private Transform itemGridTransform;
     [SerializeField] private StoreItemsManager storeItemsManager;
 
@@ -47,6 +48,7 @@ public class StoreManager : MonoBehaviour
 
             storeItems.itemName.text = "스킨 " + (i + 1);
             storeItems.skin = skins[i];
+            storeItems.itemImage.sprite = skinImages[i];
             storeItems.SetStoreItemsManager(storeItemsManager);
             storeItems.SetSkinID(i);
 

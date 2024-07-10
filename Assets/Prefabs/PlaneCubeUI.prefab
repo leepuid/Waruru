@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 891575603149466520}
   - component: {fileID: 3768000004078835749}
   - component: {fileID: 4917767506671220200}
+  - component: {fileID: -2000437998978802205}
   m_Layer: 5
   m_Name: PlaneCubeUI
   m_TagString: Untagged
@@ -149,3 +150,18 @@ MonoBehaviour:
   plane: {fileID: 2100000, guid: 8f7e757ace700074db6cb3e1d70a19ad, type: 2}
   storeManager: {fileID: 5262680518575948170, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
     type: 3}
+--- !u!114 &-2000437998978802205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836530516519154265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 5, y: -5}
+  m_UseGraphicAlpha: 1

@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class StoreItems : MonoBehaviour
 {
     [SerializeField] private GameObject equipImage; // 장착 표시
+    [SerializeField] private GameObject buyImage; // 비구매 표시
+    [SerializeField] private GameObject blackImage;
     public Image itemImage; // 스킨 이미지
     public TMP_Text itemName;   // 스킨 이름
     public Material skin; // 머터리얼 데이터 
@@ -99,7 +101,20 @@ public class StoreItems : MonoBehaviour
     public void UpdateDisplay()
     {
         equipImage.SetActive(isEquip);
-        itemImage.color = isPurchased ? Color.white : Color.black;
+        itemImage.color = Color.white;
+        if (isPurchased)
+        {
+            buyImage.SetActive(false);
+            blackImage.SetActive(false);
+        }
+        else
+        {
+            buyImage.SetActive(true);
+            Color color = Color.black;
+            color.a = 0.7f;
+            blackImage.SetActive(true);
+            blackImage.GetComponent<Image>().color = color;
+        }
     }
 
     private bool isDefaultSkin()
