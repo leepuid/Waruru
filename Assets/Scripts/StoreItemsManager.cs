@@ -39,9 +39,12 @@ public class StoreItemsManager : MonoBehaviour
 
     public void EquipSkin(StoreItems newItem)
     {
-        if (currentItem != null)
+        foreach (StoreItems item in storeItemsList)
         {
-            currentItem.UnequipInternal();
+            if (item != newItem && item.isEquip)
+            {
+                item.UnequipInternal();
+            }
         }
 
         currentItem = newItem;
