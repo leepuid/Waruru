@@ -29,6 +29,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TMP_Text cntScoreTxt;  // 이번 시도의 점수
     [SerializeField] TMP_Text moneyTxt; // 재화 텍스트
     
+    private AdmobManager _admobManager;
+
     private Stack<GameObject> stack = new();
     
     private bool isStateCheck = false;
@@ -114,6 +116,7 @@ public class UIManager : Singleton<UIManager>
 
     public void GameOver()
     {
+        _admobManager.ShowFrontAd();
         // 게임 오버 시, 종료 UI 호출
         if (Main.Game._gameState == GameState.End)
         {
