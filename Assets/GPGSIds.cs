@@ -24,21 +24,18 @@
 
 public static class GPGSIds
 {
-        public const string achievement_test1 = "CgkI8s_Mq7sFEAIQEA"; // <GPGSID>
-        public const string achievement_test3 = "CgkI8s_Mq7sFEAIQEg"; // <GPGSID>
-        public const string achievement_test2 = "CgkI8s_Mq7sFEAIQEQ"; // <GPGSID>
+        public const string achievement_waruru = "CgkI8s_Mq7sFEAIQDQ"; // <GPGSID>
+        public const string achievement_at_30x_speed = "CgkI8s_Mq7sFEAIQCA"; // <GPGSID>
+        public const string achievement_100 = "CgkI8s_Mq7sFEAIQCw"; // <GPGSID>
         public const string achievement_at_15x_speed = "CgkI8s_Mq7sFEAIQBg"; // <GPGSID>
         public const string achievement_bourgeois = "CgkI8s_Mq7sFEAIQDw"; // <GPGSID>
-        public const string achievement_persistence = "CgkI8s_Mq7sFEAIQCg"; // <GPGSID>
-        public const string achievement_god_of_dominoes = "CgkI8s_Mq7sFEAIQDA"; // <GPGSID>
-        public const string leaderboard_score = "CgkI8s_Mq7sFEAIQBA"; // <GPGSID>
-        public const string achievement_at_random_speed = "CgkI8s_Mq7sFEAIQCQ"; // <GPGSID>
-        public const string achievement_fashionista = "CgkI8s_Mq7sFEAIQDg"; // <GPGSID>
-        public const string achievement_100 = "CgkI8s_Mq7sFEAIQCw"; // <GPGSID>
-        public const string achievement_at_20x_speed = "CgkI8s_Mq7sFEAIQBw"; // <GPGSID>
         public const string achievement_first_step = "CgkI8s_Mq7sFEAIQBQ"; // <GPGSID>
-        public const string achievement_at_30x_speed = "CgkI8s_Mq7sFEAIQCA"; // <GPGSID>
-        public const string achievement_waruru = "CgkI8s_Mq7sFEAIQDQ"; // <GPGSID>
+        public const string achievement_god_of_dominoes = "CgkI8s_Mq7sFEAIQDA"; // <GPGSID>
+        public const string achievement_at_random_speed = "CgkI8s_Mq7sFEAIQCQ"; // <GPGSID>
+        public const string achievement_persistence = "CgkI8s_Mq7sFEAIQCg"; // <GPGSID>
+        public const string leaderboard_score = "CgkI8s_Mq7sFEAIQBA"; // <GPGSID>
+        public const string achievement_at_20x_speed = "CgkI8s_Mq7sFEAIQBw"; // <GPGSID>
+        public const string achievement_fashionista = "CgkI8s_Mq7sFEAIQDg"; // <GPGSID>
 
 }
 
