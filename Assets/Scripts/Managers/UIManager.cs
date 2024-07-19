@@ -116,7 +116,7 @@ public class UIManager : Singleton<UIManager>
 
     public void GameOver()
     {
-        _admobManager.ShowFrontAd();
+        //_admobManager.ShowFrontAd();
         // 게임 오버 시, 종료 UI 호출
         if (Main.Game._gameState == GameState.End)
         {
