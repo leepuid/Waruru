@@ -27,8 +27,8 @@ public class AdmobManager : MonoBehaviour
 
     #region 배너 광고
     const string bannerTestID = "ca-app-pub-3940256099942544/6300978111";
-    const string bannerID = "";
-    BannerView _bannerAd;
+    const string bannerID = "ca-app-pub-9932791264329725/8849319856";
+    private BannerView _bannerAd;
 
     public void CreateBannerView()
     {
@@ -122,9 +122,8 @@ public class AdmobManager : MonoBehaviour
 
     #region 전면 광고
     const string frontTestID = "ca-app-pub-3940256099942544/8691691433";
-    const string frontID = "";
-    InterstitialAd _frontAd;
-
+    const string frontID = "ca-app-pub-9932791264329725/7819185505";
+    private InterstitialAd _frontAd;
 
     private void LoadFrontAd()
     {

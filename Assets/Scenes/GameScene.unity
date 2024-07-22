@@ -446,6 +446,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3048437474159960937, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
+        type: 3}
+      propertyPath: _admobManager
+      value: 
+      objectReference: {fileID: 1426863123}
     - target: {fileID: 3548164971148899783, guid: e77a1a4eda68d2f4fbbd6803a53e769e,
         type: 3}
       propertyPath: m_IsActive

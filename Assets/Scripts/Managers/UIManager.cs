@@ -28,8 +28,9 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TMP_Text bestScoreTxt; // 기록 중 가장 높은 점수
     [SerializeField] private TMP_Text cntScoreTxt;  // 이번 시도의 점수
     [SerializeField] TMP_Text moneyTxt; // 재화 텍스트
-    
-    private AdmobManager _admobManager;
+
+    [Header("Ads")]
+    [SerializeField] private AdmobManager _admobManager;
 
     private Stack<GameObject> stack = new();
     
@@ -83,6 +84,7 @@ public class UIManager : Singleton<UIManager>
         }
         if(Main.Game._gameState == GameState.End && !isStateCheck)
         {
+            _admobManager.ShowFrontAd();
             GameOver();
         }
     }
@@ -116,7 +118,6 @@ public class UIManager : Singleton<UIManager>
 
     public void GameOver()
     {
-        //_admobManager.ShowFrontAd();
         // 게임 오버 시, 종료 UI 호출
         if (Main.Game._gameState == GameState.End)
         {
