@@ -92,7 +92,7 @@ public class Domino : MonoBehaviour
 
     private void Touch()
     {
-        if (Input.GetMouseButtonDown(0)) // TODO : 빌드 시 모바일 터치로 바꾸기.
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
             if (_isClickY)
             {

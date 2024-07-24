@@ -14,7 +14,7 @@ public class StoreItems : MonoBehaviour
     public Image itemImage; // 스킨 이미지
     public TMP_Text itemName;   // 스킨 이름
     public Material skin; // 머터리얼 데이터 
-    private int price = 2; // 스킨 가격
+    private int price = 200; // 스킨 가격
     private Material skinMaterial; // 넘겨줄 머터리얼
     public bool isPurchased = false; // 구매 여부
     public bool isEquip = false; // 장착 여부
