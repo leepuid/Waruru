@@ -97,15 +97,6 @@ public class UIManager : Singleton<UIManager>
 
     public void GameStart()
     {
-        //if (Input.touchCount > 0)
-        //{
-        //Touch touch = Input.GetTouch(0);
-        //if (touch.phase == TouchPhase.Ended)
-        //{
-
-        //panel.SetActive(false);
-        //}
-        //}
         if (startUI != null && !isPopUpOpen)
         {
             startUI.DOFade(0, 1.0f).OnComplete(() =>
