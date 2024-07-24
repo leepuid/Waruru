@@ -46,11 +46,26 @@ public class StoreManager : MonoBehaviour
             GameObject item = Instantiate(itemPrefabs, itemGridTransform);
             StoreItems storeItems = item.GetComponent<StoreItems>();
 
-            storeItems.itemName.text = "스킨 " + (i + 1);
             storeItems.skin = skins[i];
             storeItems.itemImage.sprite = skinImages[i];
             storeItems.SetStoreItemsManager(storeItemsManager);
             storeItems.SetSkinID(i);
+
+            if (i == 0)
+            {
+                storeItems.itemName.text = "Default";
+            }
+            else
+            {
+                if (storeItems.IsSkinPurchased())
+                {
+                    storeItems.itemName.text = "Skin " + i;
+                }
+                else
+                {
+                    storeItems.itemName.text = storeItems.price.ToString();
+                }
+            }
 
             if (storeItems.IsSkinPurchased())
             {

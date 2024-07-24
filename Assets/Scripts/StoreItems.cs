@@ -14,7 +14,7 @@ public class StoreItems : MonoBehaviour
     public Image itemImage; // 스킨 이미지
     public TMP_Text itemName;   // 스킨 이름
     public Material skin; // 머터리얼 데이터 
-    private int price = 200; // 스킨 가격
+    public int price = 200; // 스킨 가격
     private Material skinMaterial; // 넘겨줄 머터리얼
     public bool isPurchased = false; // 구매 여부
     public bool isEquip = false; // 장착 여부
@@ -134,6 +134,7 @@ public class StoreItems : MonoBehaviour
             isPurchased = true;
             PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);
             itemImage.color = Color.white;
+            itemName.text = "Skin " + skinID.ToString();
             PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_fashionista, (bool success) => { });
 
             storeItemsManager.EquipSkin(this);
