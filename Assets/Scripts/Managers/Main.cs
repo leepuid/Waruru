@@ -26,5 +26,4 @@ public sealed class Main : Singleton<Main>
     //public static ScenesManager Scenes => ins._scenesManager;
     //public static UIManager UI => ins._uiManager;
     #endregion
-
 }

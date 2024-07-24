@@ -57,6 +57,7 @@ public class Domino : MonoBehaviour
 
         RotationTime();
         Touch();
+        ExitGame();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,7 +93,7 @@ public class Domino : MonoBehaviour
 
     private void Touch()
     {
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             if (_isClickY)
             {
@@ -170,24 +171,24 @@ public class Domino : MonoBehaviour
         Instantiate(dominoPrefab, _spawnPosition, _spawnRotation);
     }
 
-    public float hueIncrement = 0.01f; // Hue 증가 값 설정
-    private void ChangeColor()
-    {
-        Renderer rd = gameObject.GetComponent<Renderer>();
-        float hue = Main.Game.GetHue();
-        //rd.material.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
-        Color currentColor = rd.material.GetColor("_ColorTop");
+    //public float hueIncrement = 0.01f; // Hue 증가 값 설정
+    //private void ChangeColor()
+    //{
+    //    Renderer rd = gameObject.GetComponent<Renderer>();
+    //    float hue = Main.Game.GetHue();
+    //    //rd.material.SetColor("Color_d3f90b46fa4040c48d4031973961bef6", randomColor);
+    //    Color currentColor = rd.material.GetColor("_ColorTop");
 
-        //여기에서 색을 변환하는 과정을 넣어줘
-        Color.RGBToHSV(currentColor, out float tmp, out float saturation, out float value);
-        Debug.Log($"휴..{hue}, {saturation}");
+    //    //여기에서 색을 변환하는 과정을 넣어줘
+    //    Color.RGBToHSV(currentColor, out float tmp, out float saturation, out float value);
+    //    Debug.Log($"휴..{hue}, {saturation}");
 
-        // 새로운 색상을 HSV에서 RGB로 변환
-        currentColor = Color.HSVToRGB(hue, saturation, value);
+    //    // 새로운 색상을 HSV에서 RGB로 변환
+    //    currentColor = Color.HSVToRGB(hue, saturation, value);
 
-        //currentColor = new Color(r, g, b);
-        rd.material.SetColor("_ColorTop", currentColor);
-    }
+    //    //currentColor = new Color(r, g, b);
+    //    rd.material.SetColor("_ColorTop", currentColor);
+    //}
 
     IEnumerator CoSpawnWaiting()
     {
@@ -199,5 +200,25 @@ public class Domino : MonoBehaviour
         }
         if (!_isFallDown) GetPoint();
         SpawnDomino();
+    }
+
+    private int backBtnCount = 0;
+    private void ExitGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            backBtnCount++;
+            if (backBtnCount == 2) Application.Quit();
+            else
+            {
+                if (!IsInvoking("DoubleTouch")) Invoke("DoubleTouch", 1.0f);
+            }
+
+        }
+    }
+
+    private void DoubleTouch()
+    {
+        backBtnCount = 0;
     }
 }
