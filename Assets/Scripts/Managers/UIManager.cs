@@ -40,10 +40,6 @@ public class UIManager : Singleton<UIManager>
     private int best;
     public static int money;
 
-    private int backBtnCount = 0;
-    private float time;
-    private float inTime = 1.5f;
-
     private void Start()
     {
         Opening();
@@ -90,17 +86,6 @@ public class UIManager : Singleton<UIManager>
         {
             _admobManager.ShowFrontAd();
             GameOver();
-        }
-
-        // 게임 종료.
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.time - time < inTime) backBtnCount++;
-            else backBtnCount = 1;
-
-            time = Time.time;
-            if (backBtnCount >= 2) ExitGame();
-            else Debug.Log("한 번 더 누르면 종료됩니다.");
         }
     }
 
@@ -244,14 +229,5 @@ public class UIManager : Singleton<UIManager>
     public void UpdateMoneyText(string moneyData)
     {
         moneyTxt.text = moneyData;
-    }
-
-    private void ExitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit(); // 어플리케이션 종료
-#endif
     }
 }

@@ -26,4 +26,33 @@ public sealed class Main : Singleton<Main>
     //public static ScenesManager Scenes => ins._scenesManager;
     //public static UIManager UI => ins._uiManager;
     #endregion
+
+    #region ExitGame
+    private int backBtnCount = 0;
+    private float time;
+    private float inTime = 1.5f;
+
+    private void Update()
+    {
+        // 게임 종료.
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Time.time - time < inTime) backBtnCount++;
+            else backBtnCount = 1;
+
+            time = Time.time;
+            if (backBtnCount >= 2) ExitGame();
+            else Debug.Log("Press again to exit the application.");
+        }
+    }
+
+    private void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
+    }
+    #endregion
 }
