@@ -57,7 +57,6 @@ public class Domino : MonoBehaviour
 
         RotationTime();
         Touch();
-        ExitGame();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -200,22 +199,5 @@ public class Domino : MonoBehaviour
         }
         if (!_isFallDown) GetPoint();
         SpawnDomino();
-    }
-
-    private int backBtnCount = 0;
-    private float time;
-    private float inTime = 1.5f;
-    private void ExitGame()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            backBtnCount++;
-            if (Time.time - time < inTime) backBtnCount++;
-            else backBtnCount = 1;
-
-            time = Time.time;
-            if (backBtnCount >= 2) Application.Quit();
-            else Debug.Log("한 번 더 누르면 종료됩니다.");
-        }
     }
 }
