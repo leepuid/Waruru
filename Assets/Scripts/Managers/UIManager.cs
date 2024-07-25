@@ -19,6 +19,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject store;    // 상점 UI 버튼
     [SerializeField] private GameObject ad;   // 광고 제거 UI 버튼
     [SerializeField] private GameObject setting;  // 설정 UI 버튼
+    [SerializeField] private GameObject touchBlock;
 
     [Header ("InGame UI")]
     [SerializeField] private TMP_Text scoreTxt;   // 실시간 점수 UI 텍스트
@@ -92,7 +93,10 @@ public class UIManager : Singleton<UIManager>
     public void Opening()
     {
         startUI.gameObject.SetActive(true);
-        startUI.DOFade(1, 1.0f);
+        startUI.DOFade(1, 1.0f).onComplete = () =>
+        {
+            touchBlock.SetActive(false);
+        };
     }
 
     public void GameStart()
