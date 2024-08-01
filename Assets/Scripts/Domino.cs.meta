@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: bf3c0fa442a035f4193b154b3955fc2f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dominoPrefab: {fileID: 1951050869187663915, guid: 79cac1c02ea384247b50da944dc4074b,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
