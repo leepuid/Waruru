@@ -92,7 +92,7 @@ public class Domino : MonoBehaviour
 
     private void Touch()
     {
-        if (Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.GetMouseButton(0))
         {
             if (_isClickY)
             {
