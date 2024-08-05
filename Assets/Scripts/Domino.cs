@@ -7,7 +7,7 @@ using UnityEngine;
 public class Domino : MonoBehaviour
 {
     [SerializeField] GameObject dominoPrefab;
-    [SerializeField] GameObject flipDominoPredfab;
+    [SerializeField] GameObject flipDominoPrefab;
 
     private Vector3 _rotation;
     private Vector3 _spawnPosition;
@@ -25,12 +25,10 @@ public class Domino : MonoBehaviour
     private bool _isFallDown = false;
     private void Awake()
     {
-        flipDominoPredfab.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        // _rotationSpeed = UnityEngine.Random.Range(1.0f, 3.1f);
+        flipDominoPrefab.transform.localRotation = Quaternion.Euler(Vector3.zero);
         _rotationSpeed = Main.Game.GetSpeed();
         Debug.Log(_rotationSpeed);
         _rotationTime /= _rotationSpeed;
-        //ChangeColor();
         CameraControl.ins.SetTarget(transform);
     }
 
@@ -92,7 +90,7 @@ public class Domino : MonoBehaviour
 
     private void Touch()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (_isClickY)
             {
@@ -155,7 +153,7 @@ public class Domino : MonoBehaviour
         {
             float newYRotation = transform.rotation.eulerAngles.y + 180;
             float newZRotation = (360 - transform.rotation.eulerAngles.z) % 360;
-            flipDominoPredfab.transform.rotation = Quaternion.Euler(
+            flipDominoPrefab.transform.rotation = Quaternion.Euler(
                             transform.rotation.eulerAngles.x, newYRotation, newZRotation);
         }
     }
