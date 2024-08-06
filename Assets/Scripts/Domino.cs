@@ -1,4 +1,4 @@
-//using GooglePlayGames;
+using GooglePlayGames;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -65,7 +65,7 @@ public class Domino : MonoBehaviour
             CameraControl.ins.SetTarget(transform, true);
             Main.Game._gameState = GameState.Over;
             // Waruru! 넘어진 업적 달성.
-            //PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_waruru, 100, (bool success) => { });
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_waruru, 100, (bool success) => { });
             StartCoroutine(CheckDominoDown());
         }
     }

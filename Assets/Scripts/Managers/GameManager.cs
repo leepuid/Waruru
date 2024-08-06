@@ -1,4 +1,4 @@
-//using GooglePlayGames;
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +11,13 @@ public class GameManager
     private float _currentSpeed = 0.95f;
     private float _currentHue = 0.9f;
 
-    public float GetHue()
-    {
-        _currentHue += 0.05f;
-        if (_currentHue > 1.0f)
-            _currentHue = 0.0f;
-        return _currentHue;
-    }
+    //public float GetHue()
+    //{
+    //    _currentHue += 0.05f;
+    //    if (_currentHue > 1.0f)
+    //        _currentHue = 0.0f;
+    //    return _currentHue;
+    //}
 
     public int GetScore() { return _score; }
     public void AddScore()
@@ -25,36 +25,36 @@ public class GameManager
         _score++;
         UIManager.ins.SetScoreText(_score);
         // 업적.
-        //switch (_score)
-        //{
-        //    case 1:
-        //        ReportAchievement(GPGSIds.achievement_first_step);
-        //        break;
-        //    case 10:
-        //        ReportAchievement(GPGSIds.achievement_at_15x_speed);
-        //        break;
-        //    case 20:
-        //        ReportAchievement(GPGSIds.achievement_at_20x_speed);
-        //        break;
-        //    case 40:
-        //        ReportAchievement(GPGSIds.achievement_at_30x_speed);
-        //        break;
-        //    case 75:
-        //        ReportAchievement(GPGSIds.achievement_persistence);
-        //        break;
-        //    case 100:
-        //        ReportAchievement(GPGSIds.achievement_100);
-        //        break;
-        //    case 500:
-        //        PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_god_of_dominoes, (bool success) => { });
-        //        break;
-        //}
+        switch (_score)
+        {
+            case 1:
+                ReportAchievement(GPGSIds.achievement_first_step);
+                break;
+            case 10:
+                ReportAchievement(GPGSIds.achievement_at_15x_speed);
+                break;
+            case 20:
+                ReportAchievement(GPGSIds.achievement_at_20x_speed);
+                break;
+            case 40:
+                ReportAchievement(GPGSIds.achievement_at_30x_speed);
+                break;
+            case 75:
+                ReportAchievement(GPGSIds.achievement_persistence);
+                break;
+            case 100:
+                ReportAchievement(GPGSIds.achievement_100);
+                break;
+            case 500:
+                PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_god_of_dominoes, (bool success) => { });
+                break;
+        }
     }
 
-    //private void ReportAchievement(string achievementId)
-    //{
-    //    PlayGamesPlatform.Instance.ReportProgress(achievementId, 100, (bool success) => { });
-    //}
+    private void ReportAchievement(string achievementId)
+    {
+        PlayGamesPlatform.Instance.ReportProgress(achievementId, 100, (bool success) => { });
+    }
 
     public void InitScore() { _score = 0; }
 
