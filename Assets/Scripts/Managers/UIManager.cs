@@ -68,7 +68,7 @@ public class UIManager : Singleton<UIManager>
         moneyTxt.text = Crypto.LoadEncryptedData("Money");
         bestScoreTxt.text = "Best : " + best.ToString();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             GameStart();
         }
@@ -78,7 +78,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (Main.Game._gameState == GameState.Over)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 Main.Game._gameState = GameState.End;
             }
