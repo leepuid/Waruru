@@ -597,16 +597,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Domino
       objectReference: {fileID: 0}
-    - target: {fileID: 6540996507696121964, guid: 79cac1c02ea384247b50da944dc4074b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 95fb154bd0f1fab4b9afac13b739ea81, type: 2}
-    - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7504148663947670566, guid: 79cac1c02ea384247b50da944dc4074b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -877,6 +867,7 @@ GameObject:
   - component: {fileID: 1230074774}
   - component: {fileID: 1230074773}
   - component: {fileID: 1230074776}
+  - component: {fileID: 1230074777}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1002,6 +993,40 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1230074777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230074772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1426863122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba84fbefcfd674b85f965fc0b5e66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTestMode: 1
 --- !u!4 &1426863124
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 using DG.Tweening;
-//using GooglePlayGames;
+using GooglePlayGames;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,24 +37,24 @@ public class UIManager : Singleton<UIManager>
         uiCnt.moneyTxt.text = Crypto.LoadEncryptedData("Money");
         uiCnt.bestScoreTxt.text = "Best : " + uiCnt.best.ToString();
 
-        //if (Input.GetTouch(0).phase == TouchPhase.Ended)
-        //{
-        //    GameStart();
-        //}
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            GameStart();
+        }
     }
 
     private void Update()
     {
         if (Main.Game._gameState == GameState.Over)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 Main.Game._gameState = GameState.End;
             }
         }
         if (Main.Game._gameState == GameState.End && !uiCnt.isStateCheck)
         {
-            //_admobManager.ShowFrontAd();
+            _admobManager.ShowFrontAd();
             GameOver();
         }
     }
@@ -174,11 +174,11 @@ public class UIManager : Singleton<UIManager>
 
     private void SaveScore()
     {
-        int cnt = int.Parse(uiCnt.scoreTxt.text);
-        //PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, (bool success) => { });
-        uiCnt.cntScoreTxt.text = "Score : " + cnt;
-        //uiCnt.money += cnt;
-        //Crypto.SaveEncryptedData("Money", uiCnt.money.ToString());
+        int cnt = int.Parse(scoreTxt.text);
+        PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, null);
+        cntScoreTxt.text = "Score : " + cnt;
+        money += cnt;
+        Crypto.SaveEncryptedData("Money", money.ToString());
         string moneyData = Crypto.LoadEncryptedData("Money");
         UpdateMoneyText(moneyData);
         if (cnt > uiCnt.best)
@@ -186,19 +186,21 @@ public class UIManager : Singleton<UIManager>
             uiCnt.best = cnt;
             PlayerPrefs.SetInt("BestScore", uiCnt.best);
             PlayerPrefs.Save();
-            uiCnt.bestScoreTxt.text = "Best : " + uiCnt.best.ToString();
-            //PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, (bool success) => { });
+            bestScoreTxt.text = "Best : " + best.ToString();
+            PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, null);
         }
     }
-    //public void ShowLeaderBoard()
-    //{
-    //    PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_score);
-    //}
 
-    //public void ShowAchievementUI()
-    //{
-    //    PlayGamesPlatform.Instance.ShowAchievementsUI();
-    //}
+    public void ShowLeaderBoard()
+    {
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_score);
+    }
+
+    public void ShowAchievementUI()
+    {
+        PlayGamesPlatform.Instance.ShowAchievementsUI();
+    }
+
     public void UpdateMoneyText(string moneyData)
     {
         uiCnt.moneyTxt.text = moneyData;
