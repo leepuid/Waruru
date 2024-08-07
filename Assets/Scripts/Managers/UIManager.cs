@@ -85,7 +85,7 @@ public class UIManager : Singleton<UIManager>
         }
         if (Main.Game._gameState == GameState.End && !isStateCheck)
         {
-            //_admobManager.ShowFrontAd();
+            _admobManager.ShowFrontAd();
             GameOver();
         }
     }
