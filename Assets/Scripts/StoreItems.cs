@@ -135,7 +135,7 @@ public class StoreItems : MonoBehaviour
             PlayerPrefs.SetInt("Skin" + skinID.ToString(), 1);
             itemImage.color = Color.white;
             itemName.text = "Skin " + skinID.ToString();
-            PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_fashionista, (bool success) => { });
+            PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_fashionista, null);
 
             storeItemsManager.EquipSkin(this);
         }

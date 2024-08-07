@@ -68,7 +68,7 @@ public class UIManager : Singleton<UIManager>
         moneyTxt.text = Crypto.LoadEncryptedData("Money");
         bestScoreTxt.text = "Best : " + best.ToString();
 
-        if (Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.GetMouseButtonDown(0))
         {
             GameStart();
         }
@@ -78,7 +78,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (Main.Game._gameState == GameState.Over)
         {
-            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            if (Input.GetMouseButtonDown(0))
             {
                 Main.Game._gameState = GameState.End;
             }
@@ -206,7 +206,7 @@ public class UIManager : Singleton<UIManager>
     private void SaveScore()
     {
         int cnt = int.Parse(scoreTxt.text);
-        PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, (bool success) => { });
+        PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, null);
         cntScoreTxt.text = "Score : " + cnt;
         money += cnt;
         Crypto.SaveEncryptedData("Money", money.ToString());
@@ -218,7 +218,7 @@ public class UIManager : Singleton<UIManager>
             PlayerPrefs.SetInt("BestScore", best);
             PlayerPrefs.Save();
             bestScoreTxt.text = "Best : " + best.ToString();
-            PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, (bool success) => { });
+            PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, null);
         }
     }
 

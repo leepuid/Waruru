@@ -9,7 +9,7 @@ public class GameManager
     public float _timer;
     private int _score;
     private float _currentSpeed = 0.95f;
-    private float _currentHue = 0.9f;
+    // private float _currentHue = 0.9f;
 
     //public float GetHue()
     //{
@@ -46,14 +46,14 @@ public class GameManager
                 ReportAchievement(GPGSIds.achievement_100);
                 break;
             case 500:
-                PlayGamesPlatform.Instance.UnlockAchievement(GPGSIds.achievement_god_of_dominoes, (bool success) => { });
+                PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_god_of_dominoes, 100, null);
                 break;
         }
     }
 
     private void ReportAchievement(string achievementId)
     {
-        PlayGamesPlatform.Instance.ReportProgress(achievementId, 100, (bool success) => { });
+        PlayGamesPlatform.Instance.ReportProgress(achievementId, 100, null);
     }
 
     public void InitScore() { _score = 0; }
@@ -67,7 +67,7 @@ public class GameManager
         else
         {
             // 도미노 40개 및 랜덤 속도 업적 달성.
-            //PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_at_random_speed, 100, (bool success) => { });
+            PlayGamesPlatform.Instance.ReportProgress(GPGSIds.achievement_at_random_speed, 100, null);
             return Random.Range(1.0f, 3.1f);
         }
     }
