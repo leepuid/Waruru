@@ -23,7 +23,7 @@ public class GameManager
     public void AddScore()
     {
         _score++;
-        UIManager.ins.SetScoreText(_score);
+        Main.UI.SetScoreText(_score);
         // 업적.
         //switch (_score)
         //{
