@@ -13,7 +13,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private CanvasGroup startUI;    // Main - startUI
     [SerializeField] private GameObject menu; // startUI 하단 아이콘 묶음
     [SerializeField] private GameObject infoPopUp; // startUI 좌측 상단 아이콘
-    [SerializeField] private GameObject info; // Info 버튼
+    [SerializeField] private GameObject info; // info 버튼
     [SerializeField] private GameObject title; // title
     [SerializeField] private CanvasGroup endUI;   // GameOver UI
     [SerializeField] private GameObject store;    // 상점 UI 버튼
@@ -37,6 +37,7 @@ public class UIManager : Singleton<UIManager>
 
     private bool isStateCheck = false;
     private bool isPopUpOpen = false;
+    private bool isFirstEntry = true;
 
     private int best;
     public static int money;
@@ -96,6 +97,13 @@ public class UIManager : Singleton<UIManager>
         startUI.DOFade(1, 1.0f).onComplete = () =>
         {
             touchBlock.SetActive(false);
+            PlayerPrefs.SetInt("GameFirstEntry", isFirstEntry ? 1 : 0);
+            if (isFirstEntry)
+            {
+                InfoPopUp();
+                PlayerPrefs.SetInt("GameFirstEntry", isFirstEntry ? 1 : 0);
+                PlayerPrefs.Save();
+            }
         };
     }
 
@@ -138,13 +146,9 @@ public class UIManager : Singleton<UIManager>
         isPopUpOpen = true;
         info.SetActive(false);
         title.SetActive(false);
+        menu.SetActive(false);
         scoreTxt.enabled = false;
         stack.Push(go);
-
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(go.transform.DOScale(1.3f, 0.2f));
-        sequence.Append(go.transform.DOScale(1.0f, 0.2f));
-        sequence.Play();
     }
 
     private void ClosePopUp(GameObject go)
@@ -154,13 +158,10 @@ public class UIManager : Singleton<UIManager>
             GameObject current = stack.Pop();
             info.SetActive(true);
             title.SetActive(true);
+            menu.SetActive(true);
             scoreTxt.enabled = true;
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(go.transform.DOScale(1.0f, 0.1f));
-            sequence.Append(go.transform.DOScale(0.3f, 0.1f));
-            sequence.OnComplete(() => go.SetActive(false));
             isPopUpOpen = false;
-            sequence.Play();
+            go.SetActive(false);
         }
     }
 
