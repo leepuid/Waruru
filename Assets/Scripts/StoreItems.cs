@@ -124,10 +124,10 @@ public class StoreItems : MonoBehaviour
 
     private void SkinBuy()
     {
-        if (UIManager.money >= price)
+        if (UIConnect.money >= price)
         {
-            UIManager.money -= price;
-            Crypto.SaveEncryptedData("Money", UIManager.money.ToString());
+            UIConnect.money -= price;
+            Crypto.SaveEncryptedData("Money", UIConnect.money.ToString());
             string moneyData = Crypto.LoadEncryptedData("Money");
             UIManager.ins.UpdateMoneyText(moneyData);
 

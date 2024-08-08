@@ -54,7 +54,7 @@ public class UIManager : Singleton<UIManager>
         }
         if (Main.Game._gameState == GameState.End && !uiCnt.isStateCheck)
         {
-            _admobManager.ShowFrontAd();
+            uiCnt._admobManager.ShowFrontAd();
             GameOver();
         }
     }
@@ -174,11 +174,11 @@ public class UIManager : Singleton<UIManager>
 
     private void SaveScore()
     {
-        int cnt = int.Parse(scoreTxt.text);
+        int cnt = int.Parse(uiCnt.scoreTxt.text);
         PlayGamesPlatform.Instance.ReportScore(cnt, GPGSIds.leaderboard_score, null);
-        cntScoreTxt.text = "Score : " + cnt;
-        money += cnt;
-        Crypto.SaveEncryptedData("Money", money.ToString());
+        uiCnt.cntScoreTxt.text = "Score : " + cnt;
+        UIConnect.money += cnt;
+        Crypto.SaveEncryptedData("Money", UIConnect.money.ToString());
         string moneyData = Crypto.LoadEncryptedData("Money");
         UpdateMoneyText(moneyData);
         if (cnt > uiCnt.best)
@@ -186,8 +186,8 @@ public class UIManager : Singleton<UIManager>
             uiCnt.best = cnt;
             PlayerPrefs.SetInt("BestScore", uiCnt.best);
             PlayerPrefs.Save();
-            bestScoreTxt.text = "Best : " + best.ToString();
-            PlayGamesPlatform.Instance.ReportScore(best, GPGSIds.leaderboard_score, null);
+            uiCnt.bestScoreTxt.text = "Best : " + uiCnt.best.ToString();
+            PlayGamesPlatform.Instance.ReportScore(uiCnt.best, GPGSIds.leaderboard_score, null);
         }
     }
 
