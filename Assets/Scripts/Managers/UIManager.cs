@@ -37,7 +37,6 @@ public class UIManager : Singleton<UIManager>
 
     private bool isStateCheck = false;
     private bool isPopUpOpen = false;
-    private bool isFirstEntry = true;
 
     private int best;
     public static int money;
@@ -97,10 +96,24 @@ public class UIManager : Singleton<UIManager>
         startUI.DOFade(1, 1.0f).onComplete = () =>
         {
             touchBlock.SetActive(false);
-            PlayerPrefs.SetInt("GameFirstEntry", isFirstEntry ? 1 : 0);
+
+            bool isFirstEntry;
+
+            if (PlayerPrefs.HasKey("GameFirstEntry"))
+            {
+                isFirstEntry = PlayerPrefs.GetInt("GameFirstEntry", 0) == 1;
+            }
+            else
+            {
+                isFirstEntry = true;
+                PlayerPrefs.SetInt("GameFirstEntry", isFirstEntry ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+
             if (isFirstEntry)
             {
                 InfoPopUp();
+                isFirstEntry = false;
                 PlayerPrefs.SetInt("GameFirstEntry", isFirstEntry ? 1 : 0);
                 PlayerPrefs.Save();
             }
