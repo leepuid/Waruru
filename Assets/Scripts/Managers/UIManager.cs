@@ -58,20 +58,21 @@ public class UIManager : Singleton<UIManager>
 
         if (!PlayerPrefs.HasKey("Money"))
         {
+            moneyTxt.text = "0";
             PlayerPrefs.SetInt("Money", money);
         }
         else
         {
+            moneyTxt.text = Crypto.LoadEncryptedData("Money");
             money = int.Parse(Crypto.LoadEncryptedData("Money"));
         }
 
-        moneyTxt.text = Crypto.LoadEncryptedData("Money");
         bestScoreTxt.text = "Best : " + best.ToString();
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            GameStart();
-        }
+        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        //{
+        //    GameStart();
+        //}
     }
 
     private void Update()
