@@ -172,6 +172,9 @@ public class AdmobManager : MonoBehaviour
         {
             LoadFrontAd(); // 광고 재로드.
             Debug.LogError("Interstitial ad is not ready yet.");
+
+            // 광고가 준비되지 않은 경우 바로 게임 오버 처리 진행.
+            UIManager.Instance.GameOver();
         }
     }
 
